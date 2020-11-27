@@ -1,6 +1,6 @@
 public class Course {
 
-    public enum TypeCourse {TD, TP, PROJECT, SUPPORT, LECTURE, INTERACTIVE_COURSE}
+    public enum TypeCourse {AMPHITHEATRE, PRACTICAL, TD, PROJECT, SUPPORT}
 
     private int id;
     private String name;
