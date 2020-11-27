@@ -1,21 +1,11 @@
-import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.awt.event.ActionListener;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.*;
-import javax.swing.*;
-import java.awt.Font;
-import java.awt.event.*;
-
 public class main {
 
 
     public static void main(String[] args) {
-        HomePage homePage= new HomePage();
+        Page page = new Page();
+
         //TimeTable timeTable = new TimeTable();
-        System.out.println();
+        //System.out.println();
 
 
 

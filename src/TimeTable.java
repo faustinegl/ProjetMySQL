@@ -1,36 +1,29 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JLabel;
 
-public class TimeTable extends JPanel implements ActionListener {
+public abstract class TimeTable extends JPanel implements ActionListener {
 
     JScrollPane timePane;
 
-    // Constructor
     TimeTable()
     {
 
-        String[][]  lines= {
-                { "Cours 1", "", "Cours 2" ,"","","","","","","","","",""},
-                { "Cours 1", "Cours 2", "","","","","","","","","","","" }
-        };
-
-        // Column Names
-        String[] columns = { "8h", "9h", "10h","11h","12h","13h","14h","15h","16h","17h","18h","19h","20h" };
-
-         JTable timeTable = new JTable(lines, columns);
+        JTable timeTable = new JTable();
 
 
         JScrollPane sp = new JScrollPane(timeTable);
-        sp.setBounds(30, 300, 200, 300);
+        sp.setBounds(30, 200, 1200, 415);
        this.timePane= sp;
 
     }
 
-    public JScrollPane getTimePane ()
-    {
-        return timePane ;
-    }
+
+    public abstract JScrollPane getTimePane ();
+     public abstract void setValueAt(String value, int row, int col);
+
     @Override
     public void actionPerformed(ActionEvent e) {
 

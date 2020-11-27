@@ -5,6 +5,12 @@ import java.awt.event.ActionListener;
 
 public class Menu extends JPanel implements ActionListener {
 
+    JButton[] buttons = new JButton[52];
+    TimeTableStudent timeTableStudent = new TimeTableStudent();
+    TimeTableTeacher timeTableTeacher = new TimeTableTeacher();
+    TimeTablePromotion timeTablePromotion = new TimeTablePromotion();
+    TimeTableRoom timeTableRoom = new TimeTableRoom();
+
     public Menu() {
         this.setSize(1500, 1000);
         this.setLayout(null);
@@ -25,7 +31,6 @@ public class Menu extends JPanel implements ActionListener {
         JButton teachers= new JButton("Professeurs");
         JButton rooms= new JButton("Salles");
 
-        JButton[] buttons = new JButton[52];
 
         int nb=0;
 
@@ -36,6 +41,7 @@ public class Menu extends JPanel implements ActionListener {
                 buttons[nb].setFont(policeChiffre);
                 //buttons[indice].addActionListener(this);
                 this.add(buttons[nb]);
+                buttons[nb].addActionListener(this);
                 nb++;
             }
         }
@@ -106,9 +112,8 @@ public class Menu extends JPanel implements ActionListener {
         promotions.setFont(police);
         teachers.setFont(police);
         rooms.setFont(police);
-        TimeTable timeTable = new TimeTable();
 
-        this.add(timeTable.getTimePane());
+        this.add(timeTableRoom.getTimePane());
         this.add(titre);
         this.add(home);
         this.add(courses);
@@ -125,6 +130,18 @@ public class Menu extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource()==buttons[0])
+        {
+           timeTableRoom.setValueAt("Lundi 03 Novembre",0,1);
+
+        }
+        if (e.getSource()==buttons[1])
+        {
+
+        }
+
+
 
     }
 }
