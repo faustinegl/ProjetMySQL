@@ -6,7 +6,7 @@ public class User {
     private String password ;
     private String lastName;
     private String firstName;
-    private Permission permission;
+    private String permission;
 
     public int getId() {
         return id;
@@ -48,15 +48,15 @@ public class User {
         this.firstName = firstName;
     }
 
-    public Permission getPermission() {
+    public String getPermission() {
         return permission;
     }
 
-    public void setPermission(Permission permission) {
+    public void setPermission(String permission) {
         this.permission = permission;
     }
 
-    public User(int id, String email, String password, String lastName, String firstName, Permission permission) {
+    public User(int id, String email, String password, String lastName, String firstName, String permission) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -64,4 +64,5 @@ public class User {
         this.firstName = firstName;
         this.permission = permission;
     }
+    public User(){};
 }

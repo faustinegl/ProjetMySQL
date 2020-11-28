@@ -4,11 +4,12 @@ public class Student extends User {
     private int number;
     private Promotion promotion;
 
-    public Student(int id, String email, String password, String lastName, String firstName, Permission permission, int number, Promotion promotion) {
+    public Student(int id, String email, String password, String lastName, String firstName, String permission, int number, Promotion promotion) {
         super(id, email, password, lastName, firstName, permission);
         this.number = number;
         this.promotion = promotion;
     }
+    public Student(){};
 
     public int getNumber() {
         return number;

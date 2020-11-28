@@ -6,6 +6,7 @@ public class Promotion {
         this.id = id;
         this.name = name;
     }
+    public Promotion() {}
 
     public int getId() {
         return id;
