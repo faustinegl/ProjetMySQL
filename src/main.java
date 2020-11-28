@@ -20,11 +20,21 @@ public class main {
                     "jdbc:mysql://localhost:8889/Projet","root","root");
             Statement query = connect.createStatement();
 
-            List<User> users = new ArrayList();
+            List<User> users = new ArrayList<User>();
             DAO<User> userDao = new UserDAO(connect);
-            for(int i = 8110; i < 8120; i++){
+            for(int i = 0; i < 10000; i++){
+
                 User user = userDao.find(i,users);
-                System.out.println("Elève N°" + user.getPassword() + "  - " + user.getFirstName() + " " + user.getEmail());
+                if (user.getId()!=0)
+                {
+                    users.add(user);
+                }
+
+
+            }
+            for (User user : users) {
+                System.out.println("Elève N°" + user.getPermission() + "  - ");
+
             }
 
 /*            UserDAO userDAO=new UserDAO(connect);
