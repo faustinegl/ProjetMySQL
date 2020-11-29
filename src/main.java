@@ -28,6 +28,8 @@ public class main {
             List<Promotion> promotions = new ArrayList<>();
             List<Course>courses=new ArrayList<>();
             List<Site> sites=new ArrayList<>();
+            List<Session> sessions=new ArrayList<>();
+
 
             DAO<Student> studentDao = new StudentDAO(connect);
             DAO<User> userDao = new UserDAO(connect);
@@ -36,6 +38,7 @@ public class main {
             DAO<Promotion> promotionDAO = new PromotionDAO(connect);
             DAO<Course> courseDAO=new CourseDAO(connect);
             DAO<Site> siteDAO=new SiteDAO(connect);
+            DAO<Session> sessionDAO=new SessionDAO(connect);
 
 
 
@@ -53,17 +56,24 @@ public class main {
                     rooms.add(room);
                 }
                 Promotion promotion = promotionDAO.find(i, user, promotions,courses,sites);
-                if (promotion.getId() != 0) {
-                    promotions.add(promotion);
-                }
+                    if (promotion.getId() != 0) {
+                        promotions.add(promotion);
+                    }
                Course course= courseDAO.find(i, user, promotions,courses,sites);
-                if (course.getId() != 0) {
-                    courses.add(course);
-                }
+                    if (course.getId() != 0) {
+                        courses.add(course);
+                    }
                 Site site= siteDAO.find(i, user, promotions,courses,sites);
-                if (site.getId() != 0) {
-                    sites.add(site);
+                    if (site.getId() != 0) {
+                        sites.add(site);
+                    }
+                Session session = sessionDAO.find(i, user, promotions,courses,sites);
+
+                if(session.getId()!=0)
+                {
+                    sessions.add(session);
                 }
+
             }
 
             for (int i = 0; i < 10000; i++) {
@@ -116,6 +126,13 @@ public class main {
 
                 System.out.println(room.getId()+ " -"+room.getName() + "  - "+ room.getCapacity()+" -"+
                         room.getSite().getId()+" -"+ room.getSite().getName());
+            }
+            System.out.println("LISTE SESSIONS :");
+            for (Session session : sessions) {
+
+                System.out.println(session.getId()+ " -"+session.getWeek() + "  - "+ session.getDate()+" -"+
+                        session.getStartTime()+" -"+ session.getEndTime()+ " -"+ session.getCourse().getName()+" -"+
+                        session.getState());
             }
 
 

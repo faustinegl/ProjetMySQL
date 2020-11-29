@@ -6,12 +6,12 @@ public class Session {
     private int id;
     private int week ;
     private String date;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private int startTime;
+    private int endTime;
     private Course course ;
     private String state ;
 
-    public Session(int id, int week, String date, LocalDateTime startTime, LocalDateTime endTime, Course course, String state) {
+    public Session(int id, int week, String date, int startTime, int endTime, Course course, String state) {
         this.id = id;
         this.week = week;
         this.date = date;
@@ -46,19 +46,19 @@ public class Session {
         this.date = date;
     }
 
-    public LocalDateTime getStartTime() {
+    public int getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
+    public void setStartTime(int startTime) {
         this.startTime = startTime;
     }
 
-    public LocalDateTime getEndTime() {
+    public int getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(LocalDateTime endTime) {
+    public void setEndTime(int endTime) {
         this.endTime = endTime;
     }
 

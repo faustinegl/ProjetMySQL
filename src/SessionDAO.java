@@ -1,4 +1,4 @@
-/*
+
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -27,24 +27,27 @@ public class SessionDAO extends DAO<Session> {
 
     public Session find(int id, User user, List<Promotion>promotions,List<Course>courses, List <Site> sites) {
 
-        // DAO<User> userDAO = new UserDAO(connect);
         Session session=new Session();
-        //User user= new User();
+        Course course = new Course();
 
         try {
             ResultSet result = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM session WHERE ID_USER = " + id);
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM session WHERE ID = " + id);
 
             if(result.first())
             {
-                Course course = new Course(result.getInt("ID_COURSE"),
-                                    result.getString("NAME_COURSE"));
-                session = new Student(id, result.getString("WEEK"),
+                for(Course course1: courses) {
+                    if (course1.getId() == result.getInt("ID_COURSE")) {
+                        course = course1;
+                    }
+                }
+
+                session = new Session(id, result.getInt("WEEK"),
                         result.getString("DATE"),
                         result.getInt("START_TIME"),
                         result.getInt("END_TIME"),
-                        course, result.getString("STATE");
+                        course, result.getString("STATE"));
             }
 
 
@@ -55,4 +58,4 @@ public class SessionDAO extends DAO<Session> {
         return session;
     }
 }
-*/
+
