@@ -7,11 +7,14 @@ public class HomePage extends JPanel implements ActionListener {
 
     JButton validated= new JButton("Valider");
     JLabel message=new JLabel("Entrez votre email et password");
-
-
+    JTextField textEmail= new JTextField();
+    Font police = new Font("Arial",Font.BOLD,10);
+    boolean erreur ;
 
     public HomePage()
     {
+
+
         this.setSize(1250,900);
         this.setLayout(null);
 
@@ -19,12 +22,15 @@ public class HomePage extends JPanel implements ActionListener {
         labelFond.setBounds(0,0,1250,900);
         labelFond.setSize(1460,677);
 
-        Font police = new Font("Arial",Font.BOLD,10);
         Font policeMessage = new Font("Arial",Font.BOLD,25);
 
         JLabel message=new JLabel("Entrez votre email et password");
         JLabel email=new JLabel("EMAIL :");
         JLabel password=new JLabel("PASSWORD :");
+
+        JLabel emailErreur = new JLabel("Votre email est incorrect !");
+        emailErreur.setBounds(220,125,500,20);
+        emailErreur.setFont(police);
 
         message.setBounds(170,30,400,50);
         email.setBounds(220,100,100,20);
@@ -34,7 +40,7 @@ public class HomePage extends JPanel implements ActionListener {
         message.setFont(policeMessage);
         validated.setFont(police);
 
-        JTextField textEmail= new JTextField();
+
         textEmail.setBounds(320,100,200,20);
         textEmail.setFont(police);
         textEmail.addActionListener(this);
@@ -46,7 +52,15 @@ public class HomePage extends JPanel implements ActionListener {
         validated.addActionListener(this);
 
 
+
         this.setFont(police);
+
+
+        if (erreur)
+        {
+            this.add(emailErreur);
+        }
+
 
 
         this.add(message);

@@ -8,7 +8,7 @@ public class main {
     public static void main(String[] args) {
         main connection = new main();
         connection.createConnection();
-        //Page page = new Page();
+        Page page = new Page();
     }
 
     //Create a method to connect to database
@@ -42,7 +42,7 @@ public class main {
                 {
 
                     users.add(user);
-                    //students.add(student);
+                    students.add(student);
                     teachers.add(teacher);
                    // rooms.add(room);
                 }
@@ -50,16 +50,18 @@ public class main {
 
             }
             for (User user : users) {
-                System.out.println("Elève N°" + user.getPermission()+ user.getFirstName() + "  - ");
+                System.out.println(user.getPermission()+ " : "+ user.getFirstName() + "  - ");
 
             }
+            System.out.println("LISTE ELEVES :");
             for (Student student : students) {
-                System.out.println("Elève N°" + student.getFirstName() + "  - ");
+
+                System.out.println(student.getFirstName() + "  - ");
             }
 
-
+            System.out.println("LISTE PROFESSEURS :");
             for (Teacher teacher : teachers) {
-                System.out.println("Elève N°" + teacher.getFirstName() + "  - ");
+                System.out.println(teacher.getFirstName() + "  - ");
 
             }
            /* for (Room room : rooms) {

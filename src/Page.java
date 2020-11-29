@@ -24,8 +24,20 @@ public class Page extends JFrame implements ActionListener {
         public void actionPerformed (ActionEvent e){
 
             if (e.getSource() == homePage.validated) {
-                this.setContentPane(menu);
-                this.revalidate();
+
+
+                        if (homePage.textEmail.getText().equals("aaaa"))
+                        {
+                            homePage.erreur=false;
+                            this.setContentPane(menu);
+                            this.revalidate();
+                        }
+
+
+
+
+
+
             }
 
 
