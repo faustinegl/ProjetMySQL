@@ -42,3 +42,4 @@ public class SiteDAO extends DAO<Site>{
     }
 
 }
+

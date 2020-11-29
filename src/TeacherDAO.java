@@ -41,8 +41,11 @@ public class TeacherDAO extends DAO<Teacher> {
 
                         for (Course course2 : courses) {
                             System.out.println(course2.getId()+" "+result.getInt("ID_COURSE"));
+
                             if(course2.getId()==result.getInt("ID_COURSE")){
                                 courseTeacher.add(course2);
+
+                                
                             }
                         }
 

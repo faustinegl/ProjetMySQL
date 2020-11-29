@@ -113,7 +113,7 @@ public class Menu extends JPanel implements ActionListener {
         teachers.setFont(police);
         rooms.setFont(police);
 
-        this.add(timeTableRoom.getTimePane());
+        //this.add(timeTableRoom.getTimePane());
         this.add(titre);
         this.add(home);
         this.add(courses);

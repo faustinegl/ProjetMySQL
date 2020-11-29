@@ -9,8 +9,8 @@ public class HomePage extends JPanel implements ActionListener {
     JLabel message=new JLabel("Entrez votre email et password");
     JTextField textEmail= new JTextField();
     Font police = new Font("Arial",Font.BOLD,10);
-    boolean erreur ;
     JPasswordField textPassWord= new JPasswordField();
+    JLabel errorMessage = new JLabel("Votre email ou mot de passe est incorrect !");
 
     public HomePage()
     {
@@ -29,9 +29,8 @@ public class HomePage extends JPanel implements ActionListener {
         JLabel email=new JLabel("EMAIL :");
         JLabel password=new JLabel("PASSWORD :");
 
-        JLabel emailErreur = new JLabel("Votre email est incorrect !");
-        emailErreur.setBounds(220,125,500,20);
-        emailErreur.setFont(police);
+        errorMessage.setBounds(350,125,500,20);
+        errorMessage.setFont(police);
 
         message.setBounds(170,30,400,50);
         email.setBounds(220,100,100,20);
@@ -53,17 +52,7 @@ public class HomePage extends JPanel implements ActionListener {
         textPassWord.addActionListener(this);
         validated.addActionListener(this);
 
-
-
         this.setFont(police);
-
-
-        if (erreur)
-        {
-            this.add(emailErreur);
-        }
-
-
 
         this.add(message);
         this.add(email);

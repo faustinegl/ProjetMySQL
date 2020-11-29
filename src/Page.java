@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -34,70 +35,57 @@ public class Page extends JFrame implements ActionListener {
 
         String email = homePage.textEmail.getText();
         String password = new String(homePage.textPassWord.getPassword());
-
+        JDialog errorMessage = new JDialog(this,"Email ou mot de passe incorrect",true );
+       errorMessage.setLayout(null);
         try {
 
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/projet?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
-                    "root", "");
+            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/projet?use" +
+                            "Unicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false" +
+                            "&serverTimezone=UTC", "root", "");
 
             Statement instruction = connect.createStatement();
             ResultSet resultat = instruction.executeQuery("SELECT * FROM User");
 
-            while(resultat.next())
-            {
-                if ((email.equals(resultat.getString("email")) && (password.equals(resultat.getString("password")))) )
-                {
-
-                    homePage.erreur = false;
-                    this.setContentPane(menu);
-                    this.revalidate();}
+            while(resultat.next()) {
+                if ((email.equals(resultat.getString("email")) && (password.equals(resultat.getString("password"))))) {
+                    errorMessage.setVisible(false);
+                    switch (resultat.getString("PERMISSION")) {
+                        case ("TEACHER") -> {
+                            menu.add(menu.timeTableTeacher.getTimePane());
+                            this.setContentPane(menu);
+                            this.revalidate();
+                        }
+                        case ("STUDENT") -> {
+                            menu.add(menu.timeTableStudent.getTimePane());
+                            this.setContentPane(menu);
+                            this.revalidate();
+                        }
+                    }
 
                 }
-        }
-        catch (SQLException ex) {
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
-            ex.printStackTrace();
-        }
-    }
 
-            /*Statement query = connect.createStatement();
+               /* else {
+                    errorMessage.setBounds(350, 125, 500, 20);
+                    errorMessage.setBackground(Color.RED);
+                    errorMessage.setVisible(true);
+                    errorMessage.dispose();
+                }*/
 
-            // Vérifier si l'email existe dans la table "USER"
-            ResultSet rs = query.executeQuery("Select email from USER where email like '" + homePage.textEmail.getText() + "'");
+            }
 
-            if (rs.next()){
-                homePage.erreur = false;
-                this.setContentPane(menu);
-                this.revalidate();}
 
         } catch (SQLException ex) {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
-        }*/
+        }
     }
 
-
-        /*List<String> emails = new ArrayList<String>();
-        // valid email addresses
-
-        for(User user : users){
-            emails.add(user.getEmail());
-        }*/
+}
 
 
-       /* if (homePage.textEmail.getText().equals("aaaa")) {
-                homePage.erreur = false;
-                this.setContentPane(menu);
-                this.revalidate();
-            }*/
 
-               /* for (User user : users) {
-                    if (homePage.textEmail.getText().equals(user.getEmail())) {
-                        homePage.erreur = false;
-                        this.setContentPane(menu);
-                        this.revalidate();
-                    }
-                } */
+
+
 
 
 
