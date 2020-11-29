@@ -10,6 +10,7 @@ public class HomePage extends JPanel implements ActionListener {
     JTextField textEmail= new JTextField();
     Font police = new Font("Arial",Font.BOLD,10);
     boolean erreur ;
+    JPasswordField textPassWord= new JPasswordField();
 
     public HomePage()
     {
@@ -45,7 +46,8 @@ public class HomePage extends JPanel implements ActionListener {
         textEmail.setFont(police);
         textEmail.addActionListener(this);
 
-        JPasswordField textPassWord= new JPasswordField();
+        textPassWord.addActionListener(this);
+
         textPassWord.setBounds(320,150,200,20);
         textPassWord.setFont(police);
         textPassWord.addActionListener(this);

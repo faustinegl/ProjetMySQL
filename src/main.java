@@ -8,7 +8,7 @@ public class main {
     public static void main(String[] args) {
         main connection = new main();
         connection.createConnection();
-        //Page page = new Page();
+        Page page = new Page();
     }
 
     //Create a method to connect to database
@@ -16,9 +16,9 @@ public class main {
         try {
             //Connect to Database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connect = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:8889/Projet",
-                    "root", "root");
+            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/projet?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+                    "root","");
+
             Statement query = connect.createStatement();
 
             List<User> users = new ArrayList<>();
@@ -56,17 +56,17 @@ public class main {
                     rooms.add(room);
                 }
                 Promotion promotion = promotionDAO.find(i, user, promotions,courses,sites);
-                    if (promotion.getId() != 0) {
-                        promotions.add(promotion);
-                    }
-               Course course= courseDAO.find(i, user, promotions,courses,sites);
-                    if (course.getId() != 0) {
-                        courses.add(course);
-                    }
+                if (promotion.getId() != 0) {
+                    promotions.add(promotion);
+                }
+                Course course= courseDAO.find(i, user, promotions,courses,sites);
+                if (course.getId() != 0) {
+                    courses.add(course);
+                }
                 Site site= siteDAO.find(i, user, promotions,courses,sites);
-                    if (site.getId() != 0) {
-                        sites.add(site);
-                    }
+                if (site.getId() != 0) {
+                    sites.add(site);
+                }
                 Session session = sessionDAO.find(i, user, promotions,courses,sites);
 
                 if(session.getId()!=0)
