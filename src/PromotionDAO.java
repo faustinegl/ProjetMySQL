@@ -25,7 +25,7 @@ public class PromotionDAO extends DAO<Promotion>{
     }
 
     @Override
-    public Promotion find(int id, User user, List<Promotion>promotions) {
+    public Promotion find(int id, User user, List<Promotion>promotions,List<Course>courses, List <Site> sites) {
 
         Promotion promotion=new Promotion();
 

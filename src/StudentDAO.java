@@ -23,7 +23,7 @@ public class StudentDAO extends DAO<Student> {
         return false;
     }
 
-    public Student find(int id, User user, List<Promotion>promotions) {
+    public Student find(int id, User user, List<Promotion>promotions,List<Course>courses, List <Site> sites) {
 
         Student student=new Student();
         Promotion promotion=new Promotion();

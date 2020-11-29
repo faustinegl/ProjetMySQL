@@ -6,6 +6,7 @@ public class Site {
         this.id = id;
         this.name = name;
     }
+    public Site(){}
 
     public int getId() {
         return id;

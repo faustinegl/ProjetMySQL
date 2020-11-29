@@ -1,4 +1,5 @@
 /*
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,7 +25,7 @@ public class SessionDAO extends DAO<Session> {
         return false;
     }
 
-    public Session find(int id, List<User> users) {
+    public Session find(int id, User user, List<Promotion>promotions,List<Course>courses, List <Site> sites) {
 
         // DAO<User> userDAO = new UserDAO(connect);
         Session session=new Session();
@@ -41,20 +42,10 @@ public class SessionDAO extends DAO<Session> {
                                     result.getString("NAME_COURSE"));
                 session = new Student(id, result.getString("WEEK"),
                         result.getString("DATE"),
-                        result.getInt("START_TIME),
-                        user.getINT("END_TIME"),
+                        result.getInt("START_TIME"),
+                        result.getInt("END_TIME"),
                         course, result.getString("STATE");
             }
-                //System.out.println("l");
-
-
-
-
-
-
-
-
-                    //System.out.println(student.getFirstName());
 
 
 
@@ -63,4 +54,5 @@ public class SessionDAO extends DAO<Session> {
         }
         return session;
     }
-}*/
+}
+*/

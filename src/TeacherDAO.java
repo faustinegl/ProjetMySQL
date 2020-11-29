@@ -26,28 +26,24 @@ public class TeacherDAO extends DAO<Teacher> {
         return false;
     }
 
-    public Teacher find(int id, User user, List<Promotion>promotions) {
+    public Teacher find(int id, User user, List<Promotion>promotions,List<Course>courses, List <Site> sites) {
 
-        // DAO<User> userDAO = new UserDAO(connect);
         Teacher teacher = new Teacher();
-        //User user= new User();
-
+        List<Course>courseTeacher=new ArrayList<>();
         try {
             ResultSet result = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM teacher WHERE ID_USER = " + id);
 
             if (result.first())
-                //System.out.println("l");
-                //for (User user : users) {
 
                     if (user.getPermission().equals("TEACHER")) {
 
-                        List<Course> courses = new ArrayList<>();
-                        for (Course element : courses) {
-                            Course course = new Course(result.getInt("ID_COURSE"),
-                                    result.getString("NAME_COURSE"));
-                            courses.add(course);
+                        for (Course course2 : courses) {
+                            System.out.println(course2.getId()+" "+result.getInt("ID_COURSE"));
+                            if(course2.getId()==result.getInt("ID_COURSE")){
+                                courseTeacher.add(course2);
+                            }
                         }
 
 
@@ -55,12 +51,10 @@ public class TeacherDAO extends DAO<Teacher> {
                                 user.getPassword(),
                                 user.getLastName(),
                                 user.getFirstName(),
-                                user.getPermission(), courses);
+                                user.getPermission(), courseTeacher);
 
 
                     }
-                    //System.out.println(student.getFirstName());
-               // }
 
 
         } catch (SQLException e) {
