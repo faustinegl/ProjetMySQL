@@ -36,5 +36,5 @@ public abstract class DAO<T> {
      * @param id
      * @return T
      */
-    public abstract T find(int id, List<User> users);
+    public abstract T find(int id, User user);
 }

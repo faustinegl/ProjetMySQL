@@ -8,7 +8,7 @@ public class main {
     public static void main(String[] args) {
         main connection = new main();
         connection.createConnection();
-        Page page = new Page();
+        //Page page = new Page();
     }
 
     //Create a method to connect to database
@@ -17,9 +17,8 @@ public class main {
             //Connect to Database
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connect = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/projet?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacy" +
-                            "DatetimeCode=false&serverTimezone=UTC",
-                    "root","");
+                    "jdbc:mysql://localhost:8889/Projet",
+                    "root","root");
             Statement query = connect.createStatement();
 
             List<User> users = new ArrayList<User>();
@@ -30,42 +29,68 @@ public class main {
             DAO <Student> studentDao = new StudentDAO(connect);
             DAO<User> userDao = new UserDAO(connect);
             DAO <Teacher> teacherDAO = new TeacherDAO(connect);
-            //DAO <Room> roomDAO = new RoomDAO(connect);
+            DAO <Room> roomDAO = new RoomDAO(connect);
 
             for(int i = 0; i < 10000; i++){
-                User user = userDao.find(i,users);
-                Student student = studentDao.find(i,users);
-                Teacher teacher = teacherDAO.find(i,users);
+                User user = new User();
+                user =userDao.find(i,user);
+                //Student student = studentDao.find(i,users);
+                Teacher teacher = teacherDAO.find(i,user);
 
-                //Room room = roomDAO.find(i,users);
-                if (user.getId()!=0)
-                {
-
+                Room room = roomDAO.find(i,user);
+                if (user.getId()!=0) {
                     users.add(user);
-                    students.add(student);
-                    teachers.add(teacher);
-                   // rooms.add(room);
                 }
-
-
+                if (room.getId()!=0){
+                    rooms.add(room);
+                }
             }
+
+            for(int i = 0; i < 10000; i++) {
+                for(User user : users)
+                {
+                    if (i==user.getId()){
+                        Student student = studentDao.find(i,user);
+                        if (student.getId() != 0) {
+                            students.add(student);
+                        }
+                    }
+                }
+            }
+            for(int i = 0; i < 10000; i++) {
+                for(User user : users)
+                {
+                    if (i==user.getId()){
+                        Teacher teacher = teacherDAO.find(i,user);
+                        if (teacher.getId() != 0) {
+                            teachers.add(teacher);
+                        }
+                    }
+                }
+            }
+
+
+
+
+
             for (User user : users) {
-                System.out.println(user.getPermission()+ " : "+ user.getFirstName() + "  - ");
+                System.out.println(user.getId()+ " : "+ user.getFirstName() + "  - ");
 
             }
             System.out.println("LISTE ELEVES :");
             for (Student student : students) {
 
-                System.out.println(student.getFirstName() + "  - ");
+                System.out.println(student.getId()+ " -"+student.getFirstName() + "  - "+ student.getLastName()+" -"+
+                        student.getEmail()+" -"+ student.getPassword()+" -"+student.getNumber()+ " -"+student.getPromotion());
             }
 
             System.out.println("LISTE PROFESSEURS :");
             for (Teacher teacher : teachers) {
-                System.out.println(teacher.getFirstName() + "  - ");
-
+                System.out.println(teacher.getId()+ " -"+teacher.getFirstName() + "  - "+ teacher.getLastName()+" -"+
+                        teacher.getEmail()+" -"+ teacher.getPassword()+" -"+teacher.getListCourse());
             }
-           /* for (Room room : rooms) {
-                System.out.println("Elève N°" + room.getCapacity() + "  - ");
+            /*for (Room room : rooms) {
+                System.out.println("Capacite " + room.getCapacity() + "  - ");
 
             }*/
 

@@ -1,4 +1,4 @@
-/*
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,7 +7,7 @@ import java.util.List;
 
 public class RoomDAO extends DAO<Room> {
 
-    public  RoomDAO(Connection conn) {
+    public RoomDAO(Connection conn) {
         super(conn);
     }
 
@@ -23,19 +23,19 @@ public class RoomDAO extends DAO<Room> {
         return false;
     }
 
-    public Room find(int id, List<User> users) {
+    public Room find(int id, User user) {
 
         // DAO<User> userDAO = new UserDAO(connect);
-        Room room=new Room();
+        Room room = new Room();
         //User user= new User();
 
         try {
             ResultSet result = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM room WHERE ID_USER = " + id);
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM room WHERE ID = " + id);
 
-            if(result.first())
-                //System.out.println("l");
+            if (result.first())
+            //System.out.println("l");
             {
                 Site site = new Site(result.getInt("ID_SITE"),
                         "");
@@ -45,9 +45,7 @@ public class RoomDAO extends DAO<Room> {
             }
 
 
-
-                    //System.out.println(student.getFirstName());
-
+            //System.out.println(student.getFirstName());
 
 
         } catch (SQLException e) {
@@ -55,4 +53,4 @@ public class RoomDAO extends DAO<Room> {
         }
         return room;
     }
-}*/
+}

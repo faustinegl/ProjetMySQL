@@ -23,14 +23,13 @@ public class UserDAO extends DAO<User> {
         return false;
     }
 
-    public User find(int id, List<User> users) {
+    public User find(int id, User users) {
         User user=new User();
 
         try {
             ResultSet result = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM User WHERE ID = " + id);
-            //ResultSet rs = query.executeQuery("SELECT * FROM Test1");
             if(result.first())
                 user = new User(id, result.getString("EMAIL"),
                         result.getString("PASSWORD"),

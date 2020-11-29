@@ -26,7 +26,7 @@ public class TeacherDAO extends DAO<Teacher> {
         return false;
     }
 
-    public Teacher find(int id, List<User> users) {
+    public Teacher find(int id, User user) {
 
         // DAO<User> userDAO = new UserDAO(connect);
         Teacher teacher = new Teacher();
@@ -39,7 +39,7 @@ public class TeacherDAO extends DAO<Teacher> {
 
             if (result.first())
                 //System.out.println("l");
-                for (User user : users) {
+                //for (User user : users) {
 
                     if (user.getPermission().equals("TEACHER")) {
 
@@ -60,7 +60,7 @@ public class TeacherDAO extends DAO<Teacher> {
 
                     }
                     //System.out.println(student.getFirstName());
-                }
+               // }
 
 
         } catch (SQLException e) {
