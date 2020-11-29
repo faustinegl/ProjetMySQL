@@ -23,11 +23,10 @@ public class StudentDAO extends DAO<Student> {
         return false;
     }
 
-    public Student find(int id, User user) {
+    public Student find(int id, User user, List<Promotion>promotions) {
 
-       // DAO<User> userDAO = new UserDAO(connect);
         Student student=new Student();
-        //User user= new User();
+        Promotion promotion=new Promotion();
 
         try {
             ResultSet result = this.connect.createStatement(
@@ -35,12 +34,12 @@ public class StudentDAO extends DAO<Student> {
                     ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Projet.student WHERE ID_USER = " + id);
 
             if(result.first())
-                //System.out.println("l");
-
-
+            for(Promotion promos: promotions){
+                if(promos.getId()==result.getInt("ID_PROMOTION")){
+                    promotion=promos;
+                }
+            }
                 if (user.getPermission().equals("STUDENT")) {
-                    Promotion promotion = new Promotion(result.getInt("ID_PROMOTION"),
-                            "");
                     student = new Student(user.getId(), user.getEmail(),
                             user.getPassword(),
                             user.getLastName(),
@@ -50,10 +49,6 @@ public class StudentDAO extends DAO<Student> {
 
 
                 }
-
-                //System.out.println(student.getFirstName());
-
-
 
         } catch (SQLException e) {
             e.printStackTrace();

@@ -23,7 +23,7 @@ public class RoomDAO extends DAO<Room> {
         return false;
     }
 
-    public Room find(int id, User user) {
+    public Room find(int id, User user, List<Promotion>promotions) {
 
         // DAO<User> userDAO = new UserDAO(connect);
         Room room = new Room();

@@ -26,7 +26,7 @@ public class TeacherDAO extends DAO<Teacher> {
         return false;
     }
 
-    public Teacher find(int id, User user) {
+    public Teacher find(int id, User user, List<Promotion>promotions) {
 
         // DAO<User> userDAO = new UserDAO(connect);
         Teacher teacher = new Teacher();

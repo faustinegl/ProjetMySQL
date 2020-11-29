@@ -25,24 +25,32 @@ public class main {
            List <Student> students = new ArrayList<>();
             List<Teacher> teachers= new ArrayList<>();
             List<Room> rooms= new ArrayList<>();
+            List<Promotion>promotions =new ArrayList<>();
 
             DAO <Student> studentDao = new StudentDAO(connect);
             DAO<User> userDao = new UserDAO(connect);
             DAO <Teacher> teacherDAO = new TeacherDAO(connect);
             DAO <Room> roomDAO = new RoomDAO(connect);
+            DAO<Promotion> promotionDAO = new PromotionDAO(connect);
 
             for(int i = 0; i < 10000; i++){
                 User user = new User();
-                user =userDao.find(i,user);
+                user =userDao.find(i,user,promotions);
                 //Student student = studentDao.find(i,users);
-                Teacher teacher = teacherDAO.find(i,user);
+                Teacher teacher = teacherDAO.find(i,user,promotions);
 
-                Room room = roomDAO.find(i,user);
+
                 if (user.getId()!=0) {
                     users.add(user);
                 }
+
+                Room room = roomDAO.find(i,user,promotions);
                 if (room.getId()!=0){
                     rooms.add(room);
+                }
+                Promotion promotion = promotionDAO.find(i,user,promotions);
+                if (promotion.getId()!=0){
+                    promotions.add(promotion);
                 }
             }
 
@@ -50,7 +58,7 @@ public class main {
                 for(User user : users)
                 {
                     if (i==user.getId()){
-                        Student student = studentDao.find(i,user);
+                        Student student = studentDao.find(i,user,promotions);
                         if (student.getId() != 0) {
                             students.add(student);
                         }
@@ -61,7 +69,7 @@ public class main {
                 for(User user : users)
                 {
                     if (i==user.getId()){
-                        Teacher teacher = teacherDAO.find(i,user);
+                        Teacher teacher = teacherDAO.find(i,user,promotions);
                         if (teacher.getId() != 0) {
                             teachers.add(teacher);
                         }
@@ -81,7 +89,7 @@ public class main {
             for (Student student : students) {
 
                 System.out.println(student.getId()+ " -"+student.getFirstName() + "  - "+ student.getLastName()+" -"+
-                        student.getEmail()+" -"+ student.getPassword()+" -"+student.getNumber()+ " -"+student.getPromotion());
+                        student.getEmail()+" -"+ student.getPassword()+" -"+student.getNumber()+ " -"+student.getPromotion().getName());
             }
 
             System.out.println("LISTE PROFESSEURS :");
