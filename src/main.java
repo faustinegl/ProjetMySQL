@@ -17,25 +17,56 @@ public class main {
             //Connect to Database
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connect = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:8889/Projet","root","root");
+                    "jdbc:mysql://localhost:3306/projet?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacy" +
+                            "DatetimeCode=false&serverTimezone=UTC",
+                    "root","");
             Statement query = connect.createStatement();
 
             List<User> users = new ArrayList<User>();
-            DAO<User> userDao = new UserDAO(connect);
-            for(int i = 0; i < 10000; i++){
+           List <Student> students = new ArrayList<>();
+            List<Teacher> teachers= new ArrayList<>();
+            List<Room> rooms= new ArrayList<>();
 
+            DAO <Student> studentDao = new StudentDAO(connect);
+            DAO<User> userDao = new UserDAO(connect);
+            DAO <Teacher> teacherDAO = new TeacherDAO(connect);
+            //DAO <Room> roomDAO = new RoomDAO(connect);
+
+            for(int i = 0; i < 10000; i++){
                 User user = userDao.find(i,users);
+                Student student = studentDao.find(i,users);
+                Teacher teacher = teacherDAO.find(i,users);
+
+                //Room room = roomDAO.find(i,users);
                 if (user.getId()!=0)
                 {
+
                     users.add(user);
+                    //students.add(student);
+                    teachers.add(teacher);
+                   // rooms.add(room);
                 }
 
 
             }
             for (User user : users) {
-                System.out.println("Elève N°" + user.getPermission() + "  - ");
+                System.out.println("Elève N°" + user.getPermission()+ user.getFirstName() + "  - ");
 
             }
+            for (Student student : students) {
+                System.out.println("Elève N°" + student.getFirstName() + "  - ");
+            }
+
+
+            for (Teacher teacher : teachers) {
+                System.out.println("Elève N°" + teacher.getFirstName() + "  - ");
+
+            }
+           /* for (Room room : rooms) {
+                System.out.println("Elève N°" + room.getCapacity() + "  - ");
+
+            }*/
+
 
 /*            UserDAO userDAO=new UserDAO(connect);
             User user =new User();

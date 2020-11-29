@@ -12,6 +12,8 @@ public class Room {
         this.site = site;
     }
 
+    public Room(){}
+
     public int getId() {
         return id;
     }

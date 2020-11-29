@@ -1,6 +1,7 @@
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,20 +36,24 @@ public class StudentDAO extends DAO<Student> {
 
             if(result.first())
                 //System.out.println("l");
-                for (int i=0;i< users.size();i++) {
+                for (User user : users) {
 
-                    if (id == users.get(i).getId()) {
+                    if (user.getPermission().equals("STUDENT")) {
                         Promotion promotion = new Promotion(result.getInt("ID_PROMOTION"),
-                                result.getString("NAME"));
-                        student = new Student(id, users.get(i).getEmail(),
-                                users.get(i).getPassword(),
-                                users.get(i).getLastName(),
-                                users.get(i).getFirstName(),
-                                users.get(i).getPermission(),
+                               "");
+                        student = new Student(id, user.getEmail(),
+                                user.getPassword(),
+                                user.getLastName(),
+                                user.getFirstName(),
+                                user.getPermission(),
                                 result.getInt("NUMBER"), promotion);
 
 
+
+
+
                     }
+
                     //System.out.println(student.getFirstName());
                 }
 

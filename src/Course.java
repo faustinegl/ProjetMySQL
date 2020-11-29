@@ -4,12 +4,12 @@ public class Course {
 
     private int id;
     private String name;
-    private TypeCourse typeCourse;
+    private String typeCourse;
 
-    public Course(int id, String name, TypeCourse typeCourse) {
+    public Course(int id, String name) {
         this.id = id;
         this.name = name;
-        this.typeCourse = typeCourse;
+        //this.typeCourse = typeCourse;
     }
 
     public int getId() {
@@ -28,12 +28,12 @@ public class Course {
         this.name = name;
     }
 
-    public TypeCourse getTypeCourse() {
-        return typeCourse;
-    }
+  //  public String getTypeCourse() {
+      //  return typeCourse;
+    //}
 
-    public void setTypeCourse(TypeCourse typeCourse) {
-        this.typeCourse = typeCourse;
-    }
+   // public void setTypeCourse(String typeCourse) {
+       // this.typeCourse = typeCourse;
+    //}
 }
 

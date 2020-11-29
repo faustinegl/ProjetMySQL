@@ -9,9 +9,9 @@ public class Session {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private Course course ;
-    private State state ;
+    private String state ;
 
-    public Session(int id, int week, String date, LocalDateTime startTime, LocalDateTime endTime, Course course, State state) {
+    public Session(int id, int week, String date, LocalDateTime startTime, LocalDateTime endTime, Course course, String state) {
         this.id = id;
         this.week = week;
         this.date = date;
@@ -20,6 +20,7 @@ public class Session {
         this.course = course;
         this.state = state;
     }
+    Session(){}
 
     public int getId() {
         return id;
@@ -69,11 +70,11 @@ public class Session {
         this.course = course;
     }
 
-    public State getState() {
+    public String getState() {
         return state;
     }
 
-    public void setState(State state) {
+    public void setState(String state) {
         this.state = state;
     }
 }

@@ -134,6 +134,7 @@ public class Menu extends JPanel implements ActionListener {
         if (e.getSource()==buttons[0])
         {
            timeTableRoom.setValueAt("Lundi 03 Novembre",0,1);
+          // timeTableRoom.fireTableDataChanged();
 
         }
         if (e.getSource()==buttons[1])

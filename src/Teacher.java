@@ -9,6 +9,7 @@ public class Teacher extends User{
         super(id, email, password, lastName, firstName, permission);
         ListCourse = listCourse;
     }
+    public Teacher(){};
 
     public List<Course> getListCourse() {
         return ListCourse;
