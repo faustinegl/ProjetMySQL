@@ -1,35 +1,31 @@
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class main {
-    public static void main(String[] args) {
-      //ConnectDAO connectDAO = new ConnectDAO();
-       // connectDAO.createConnection();
-        Page page = new Page();
-    }
-/*
+public class ConnectDAO {
+    List<User> users = new ArrayList<>();
+    List<Student> students = new ArrayList<>();
+    List<Teacher> teachers = new ArrayList<>();
+    List<Room> rooms = new ArrayList<>();
+    List<Promotion> promotions = new ArrayList<>();
+    List<Course>courses=new ArrayList<>();
+    List<Site> sites=new ArrayList<>();
+    List<Session> sessions=new ArrayList<>();
 
-    //Create a method to connect to database
-    void createConnection(){
+    public void createConnection(){
         try {
             //Connect to Database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            ConnectDAO connect = DriverManager.getConnection("jdbc:mysql://localhost:8889/Projet",
-                    "root","root");
+            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:8889/Projet", "root", "root");
 
-            Statement query = connect.createStatement();
+            Statement query = ((Connection) connect).createStatement();
 
-            List<User> users = new ArrayList<>();
-            List<Student> students = new ArrayList<>();
-            List<Teacher> teachers = new ArrayList<>();
-            List<Room> rooms = new ArrayList<>();
-            List<Promotion> promotions = new ArrayList<>();
-            List<Course>courses=new ArrayList<>();
-            List<Site> sites=new ArrayList<>();
-            List<Session> sessions=new ArrayList<>();
+
 
 
             DAO<Student> studentDao = new StudentDAO(connect);
@@ -118,12 +114,10 @@ public class main {
                 }
 
             }
-            */
-/*for (Room room : rooms) {
+            /*for (Room room : rooms) {
                 System.out.println("Capacite " + room.getCapacity() + "  - ");
 
-            }*//*
-
+            }*/
             System.out.println("LISTE SALLES :");
             for (Room room : rooms) {
 
@@ -149,6 +143,5 @@ public class main {
             ex.printStackTrace();
         }
     }
-*/
-
 }
+

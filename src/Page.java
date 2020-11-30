@@ -14,12 +14,14 @@ public class Page extends JFrame implements ActionListener {
 
     HomePage homePage = new HomePage();
     Menu menu = new Menu();
+    ConnectDAO connectDAO = new ConnectDAO();
+
 
 
     public Page() {
 
         super("Page d'accueil");
-
+        connectDAO.createConnection();
         this.setSize(1250, 900);
 //        this.setDefaultLookAndFeelDecorated(true);
         this.setLayout(null);
@@ -37,18 +39,18 @@ public class Page extends JFrame implements ActionListener {
         String password = new String(homePage.textPassWord.getPassword());
         JDialog errorMessage = new JDialog(this,"Email ou mot de passe incorrect",true );
        errorMessage.setLayout(null);
-        try {
+        /*try {
 
             Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:8889/Projet"
                     , "root", "root");
 
             Statement instruction = connect.createStatement();
-            ResultSet resultat = instruction.executeQuery("SELECT * FROM User");
+            ResultSet resultat = instruction.executeQuery("SELECT * FROM User");*/
 
-            while(resultat.next()) {
-                if ((email.equals(resultat.getString("email")) && (password.equals(resultat.getString("password"))))) {
+            for (User user : connectDAO.users)
+                if ((email.equals(user.getEmail()) && (password.equals(user.getPassword())))) {
                     errorMessage.setVisible(false);
-                    switch (resultat.getString("PERMISSION")) {
+                    switch (user.getPermission()) {
                         case ("TEACHER") -> {
                             menu.add(menu.timeTableTeacher.getTimePane());
                             this.setContentPane(menu);
@@ -63,23 +65,21 @@ public class Page extends JFrame implements ActionListener {
 
                 }
 
-               /* else {
+                else {
                     errorMessage.setBounds(350, 125, 500, 20);
                     errorMessage.setBackground(Color.RED);
                     errorMessage.setVisible(true);
                     errorMessage.dispose();
-                }*/
+                }
 
             }
 
 
-        } catch (SQLException ex) {
+        } /*catch (SQLException ex) {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
-        }
-    }
+        }*/
 
-}
 
 
 
