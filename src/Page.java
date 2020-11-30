@@ -39,9 +39,8 @@ public class Page extends JFrame implements ActionListener {
        errorMessage.setLayout(null);
         try {
 
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/projet?use" +
-                            "Unicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false" +
-                            "&serverTimezone=UTC", "root", "");
+            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:8889/Projet"
+                    , "root", "root");
 
             Statement instruction = connect.createStatement();
             ResultSet resultat = instruction.executeQuery("SELECT * FROM User");

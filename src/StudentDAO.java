@@ -1,4 +1,5 @@
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,8 +13,18 @@ public class StudentDAO extends DAO<Student> {
     }
 
     public boolean create(Student obj) {
+       /* try (PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO album (title, artist_name, release_year) VALUES (?, ?, ?)")) {
+            // On ne set pas l'id, la base s'en occupe toute seule (autoincrement)
+            preparedStatement.setString(1, album.getTitle());
+            preparedStatement.setString(2, album.getArtistName());
+            preparedStatement.setInt(3, album.getReleaseYear());
+            preparedStatement.execute();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }*/
         return false;
     }
+
 
     public boolean delete(Student obj) {
         return false;
