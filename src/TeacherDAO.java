@@ -43,16 +43,16 @@ public class TeacherDAO extends DAO<Teacher> {
 
 
                 if (user.getPermission().equals("TEACHER")) {
+                    for(Integer idCours : idCourses) {
+                        for (Course course2 : courses) {
 
-                    for (Course course2 : courses) {
-
-                        if (idCourses.contains(course2.getId())) {
-                            courseTeacher.add(course2);
+                            if (idCours.equals(course2.getId())) {
+                                courseTeacher.add(course2);
 
 
+                            }
                         }
                     }
-
 
                     teacher = new Teacher(id, user.getEmail(),
                             user.getPassword(),

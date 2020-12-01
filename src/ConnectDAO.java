@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -133,7 +134,68 @@ public class ConnectDAO {
             }
 
 
+            User user =new User();
+            Student student=new Student();
+            Promotion promotion=new Promotion();
+            int choice=0,id=0,number=0,idPromo=0;
+            String email;
+            String password;
+            String lastname;
+            String firstname;
+            String permission;
+            String promo;
+            System.out.println("Voulez-vous ajouter un eleve (1) ou un Professeur(2)? ");
+            Scanner scanner=new Scanner(System.in);
+            Scanner scanner2=new Scanner(System.in);
+            choice=scanner.nextInt();
+
+            if (choice ==1)
+            {
+                permission="STUDENT";
+                System.out.println("Donnez les information de l'eleve ");
+                id=scanner.nextInt();
+                student.setId(id);
+
+                email=scanner.next( "[\\w.-]+@[\\w.-]+\\.[a-z]{2,}" );
+                student.setEmail(email);
+
+                password=scanner2.nextLine();
+                student.setPassword(password);
+
+                firstname=scanner2.nextLine();
+                student.setFirstName(firstname);
+
+                lastname=scanner2.nextLine();
+                student.setLastName(lastname);
+
+                student.setPermission(permission);
+
+                number=scanner.nextInt();
+                student.setNumber(number);
+
+                promo=scanner2.nextLine();
+                for (Promotion promotion1 : promotions) {
+                    if (promo.equals(promotion1.getName()))
+                    {
+                        student.setPromotion(promotion1);
+                    }
+                }
+
+
+
+
+                userDao.create(student);
+                studentDao.create(student);
+
+
+            }
+            else if(choice==2)
+            {
+
+            }
+
         }
+
         catch (ClassNotFoundException ex){
             Logger.getLogger(main.class.getName()).log(Level.SEVERE,null,ex);
         }

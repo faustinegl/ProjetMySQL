@@ -11,6 +11,16 @@ public class Student extends User {
     }
     public Student(){};
 
+    public int getId(){
+        return super.getId();
+    }
+    public int getIdPromo(){
+        return promotion.getId();
+    }
+    public int setIdPromo(int promo){
+        return promotion.getId();
+    }
+
     public int getNumber() {
         return number;
     }

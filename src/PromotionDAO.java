@@ -1,4 +1,5 @@
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -10,7 +11,15 @@ public class PromotionDAO extends DAO<Promotion>{
     }
 
     @Override
-    public boolean create(Promotion obj) {
+    public boolean create(Promotion promotion) {
+        try (PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO Promotion (ID,NAME) VALUES (?, ?)")) {
+            // On ne set pas l'id, la base s'en occupe toute seule (autoincrement)
+            preparedStatement.setInt(1, promotion.getId());
+            preparedStatement.setString(2, promotion.getName());
+            preparedStatement.execute();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return false;
     }
 

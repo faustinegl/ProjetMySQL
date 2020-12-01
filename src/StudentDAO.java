@@ -12,16 +12,16 @@ public class StudentDAO extends DAO<Student> {
         super(conn);
     }
 
-    public boolean create(Student obj) {
-       /* try (PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO album (title, artist_name, release_year) VALUES (?, ?, ?)")) {
+    public boolean create(Student student) {
+        try (PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO Student (ID_USER,NUMBER,ID_PROMOTION) VALUES (?, ?,?)")) {
             // On ne set pas l'id, la base s'en occupe toute seule (autoincrement)
-            preparedStatement.setString(1, album.getTitle());
-            preparedStatement.setString(2, album.getArtistName());
-            preparedStatement.setInt(3, album.getReleaseYear());
+            preparedStatement.setInt(1, student.getId());
+            preparedStatement.setInt(2, student.getNumber());
+            preparedStatement.setInt(3, student.getIdPromo());
             preparedStatement.execute();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        }*/
+        }
         return false;
     }
 
