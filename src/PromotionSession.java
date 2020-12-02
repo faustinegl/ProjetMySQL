@@ -12,8 +12,8 @@ public class PromotionSession extends Session{
           this.groupsSession = groupsSession;
      }
 
-     public PromotionSession(int id, int week, int date, int startTime, int endTime, Course course, String state, List<Promotion> groupsSession) {
-          super(id, week, date, startTime, endTime, course, state);
+     public PromotionSession(int id, int week, int date, int startTime, int endTime, Course course, String state, List<Promotion> groupsSession,Type type) {
+          super(id, week, date, startTime, endTime, course, state,type);
           this.groupsSession = groupsSession;
      }
 }

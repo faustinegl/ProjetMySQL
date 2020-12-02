@@ -27,6 +27,7 @@ public class AddRoom extends JPanel implements ActionListener {
         this.setSize(1250, 900);
         this.setLayout(null);
 
+        connectDAO.createConnection();
 
         Font police = new Font("Arial", Font.BOLD, 10);
 
@@ -60,8 +61,8 @@ public class AddRoom extends JPanel implements ActionListener {
 
         id5.setBounds(400, 150, 150, 20);
         name5.setBounds(400, 200, 150, 20);
-        capacity.setBounds(200, 250, 150, 20);
-        site.setBounds(200, 300, 150, 20);
+        capacity.setBounds(400, 250, 150, 20);
+        site.setBounds(400, 300, 150, 20);
 
         id5.addActionListener(this);
         name5.addActionListener(this);
@@ -89,8 +90,8 @@ public class AddRoom extends JPanel implements ActionListener {
         try {
             //Connect to Database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/projet?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
-                    "root","");
+            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:8889/Projet",
+                    "root","root");
             Statement query = ((Connection) connect).createStatement();
 
             Room room = new Room();

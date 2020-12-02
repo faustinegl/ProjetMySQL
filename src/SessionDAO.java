@@ -1,6 +1,7 @@
 
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,7 +14,21 @@ public class SessionDAO extends DAO<Session> {
         super(conn);
     }
 
-    public boolean create(Session obj) {
+    public boolean create(Session session) {
+        try (PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO Session (ID,WEEK,DATE,START_TIME,END_TIME,STATE,ID_COURSE,ID_TYPE) VALUES (?, ?,?,?,?, ?,?,?)")) {
+            // On ne set pas l'id, la base s'en occupe toute seule (autoincrement)
+            preparedStatement.setInt(1, session.getId());
+            preparedStatement.setInt(2, session.getWeek());
+            preparedStatement.setInt(3, session.getDate());
+            preparedStatement.setInt(4, session.getStartTime());
+            preparedStatement.setInt(5, session.getEndTime());
+            preparedStatement.setString(6, session.getState());
+            preparedStatement.setInt(7, session.getIdCourse());
+            preparedStatement.setInt(8, session.getIdType());
+            preparedStatement.execute();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return false;
     }
 
@@ -25,10 +40,11 @@ public class SessionDAO extends DAO<Session> {
         return false;
     }
 
-    public Session find(int id, User user, List<Promotion>promotions,List<Course>courses, List <Site> sites) {
+    public Session find(int id, User user, List<Promotion>promotions,List<Course>courses, List <Site> sites,List<Type>types) {
 
         Session session=new Session();
         Course course = new Course();
+        Type type=new Type();
 
         try {
             ResultSet result = this.connect.createStatement(
@@ -42,12 +58,17 @@ public class SessionDAO extends DAO<Session> {
                         course = course1;
                     }
                 }
+                for(Type type1: types) {
+                    if (type1.getId() == result.getInt("ID_TYPE")) {
+                        type = type1;
+                    }
+                }
 
                 session = new Session(id, result.getInt("WEEK"),
                         result.getInt("DATE"),
                         result.getInt("START_TIME"),
                         result.getInt("END_TIME"),
-                        course, result.getString("STATE"));
+                        course, result.getString("STATE"), type);
             }
 
 

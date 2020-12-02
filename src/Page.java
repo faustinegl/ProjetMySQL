@@ -15,9 +15,16 @@ public class Page extends JFrame implements ActionListener {
     HomePage homePage = new HomePage();
     Menu menu = new Menu();
     AddStudent addStudent= new AddStudent();
+    AddTeacher addTeacher=new AddTeacher();
+    AddCourse addCourse=new AddCourse();
+    AddPromotion addPromotion=new AddPromotion();
+    AddRoom addRoom=new AddRoom();
+    AddSession addSession=new AddSession();
+    AddSite addSite=new AddSite();
 
 
     ConnectDAO connectDAO = new ConnectDAO();
+    Add add= new Add();
 
 
 
@@ -28,7 +35,7 @@ public class Page extends JFrame implements ActionListener {
         this.setSize(1250, 900);
 //        this.setDefaultLookAndFeelDecorated(true);
         this.setLayout(null);
-        this.add(addStudent);
+        this.add(addSite);
         this.setVisible(true);
         homePage.validated.addActionListener(this);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -13,8 +13,8 @@ public class TeacherSession extends Session{
         this.teachers = teachers;
     }
 
-    public TeacherSession(int id, int week, int date, int startTime, int endTime, Course course, String state, List<Teacher> teachers) {
-        super(id, week, date, startTime, endTime, course, state);
+    public TeacherSession(int id, int week, int date, int startTime, int endTime, Course course, String state, List<Teacher> teachers,Type type) {
+        super(id, week, date, startTime, endTime, course, state, type);
         this.teachers = teachers;
     }
 }

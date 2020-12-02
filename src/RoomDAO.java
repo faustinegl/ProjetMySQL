@@ -1,4 +1,5 @@
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -10,7 +11,17 @@ public class RoomDAO extends DAO<Room> {
         super(conn);
     }
 
-    public boolean create(Room obj) {
+    public boolean create(Room room) {
+        try (PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO Room (ID,NAME,CAPACITY,ID_SITE) VALUES (?, ?,?,?)")) {
+            // On ne set pas l'id, la base s'en occupe toute seule (autoincrement)
+            preparedStatement.setInt(1, room.getId());
+            preparedStatement.setString(2, room.getName());
+            preparedStatement.setInt(3, room.getCapacity());
+            preparedStatement.setInt(4, room.getIdSite());
+            preparedStatement.execute();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return false;
     }
 
@@ -22,7 +33,7 @@ public class RoomDAO extends DAO<Room> {
         return false;
     }
 
-    public Room find(int id, User user, List<Promotion>promotions,List<Course>courses, List<Site> sites) {
+    public Room find(int id, User user, List<Promotion>promotions,List<Course>courses, List<Site> sites,List<Type>types) {
 
 
         Room room = new Room();

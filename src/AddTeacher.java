@@ -6,10 +6,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AddTeacher extends JPanel implements ActionListener {
+
+    ConnectDAO connectDAO = new ConnectDAO();
 
     JTextField id2 = new JTextField();
     JTextField email2 = new JTextField();
@@ -17,6 +21,7 @@ public class AddTeacher extends JPanel implements ActionListener {
     JTextField lastName2 = new JTextField();
     JTextField firstName2 = new JTextField();
     JTextField courses = new JTextField();
+    JTextField coursesID = new JTextField();
 
 
     public AddTeacher()
@@ -24,7 +29,7 @@ public class AddTeacher extends JPanel implements ActionListener {
 
         this.setSize(1250,900);
         this.setLayout(null);
-
+        connectDAO.createConnection();
 
         Font police = new Font("Arial", Font.BOLD, 10);
 
@@ -35,6 +40,7 @@ public class AddTeacher extends JPanel implements ActionListener {
         JLabel lastNametitle = new JLabel("NOM :");
         JLabel firstNametitle = new JLabel("PRENOM :");
         JLabel coursetitle = new JLabel("COURS :");
+        JLabel courseIDtitle = new JLabel("ID DU COURS :");
 
 
 
@@ -46,6 +52,7 @@ public class AddTeacher extends JPanel implements ActionListener {
         lastNametitle.setFont(police);
         firstNametitle.setFont(police);
         coursetitle.setFont(police);
+        courseIDtitle.setFont(police);
 
 
         id2.setFont(police);
@@ -54,6 +61,7 @@ public class AddTeacher extends JPanel implements ActionListener {
         lastName2.setFont(police);
         firstName2.setFont(police);
         courses.setFont(police);
+        coursesID.setFont(police);
 
 
         question.setBounds(200, 100, 250, 50);
@@ -63,6 +71,7 @@ public class AddTeacher extends JPanel implements ActionListener {
         lastNametitle.setBounds(200, 300, 150, 20);
         firstNametitle.setBounds(200, 350, 150, 20);
         coursetitle.setBounds(200, 400, 150, 20);
+        courseIDtitle.setBounds(200, 450, 150, 20);
 
 
         id2.setBounds(400, 150, 150, 20);
@@ -71,7 +80,7 @@ public class AddTeacher extends JPanel implements ActionListener {
         lastName2.setBounds(400, 300, 150, 20);
         firstName2.setBounds(400, 350, 150, 20);
         courses.setBounds(400, 400, 150, 20);
-
+        coursesID.setBounds(400, 450, 150, 20);
 
         id2.addActionListener(this);
         email2.addActionListener(this);
@@ -79,6 +88,7 @@ public class AddTeacher extends JPanel implements ActionListener {
         lastName2.addActionListener(this);
         firstName2.addActionListener(this);
         courses.addActionListener(this);
+        coursesID.addActionListener(this);
 
 
         this.add(question);
@@ -88,6 +98,7 @@ public class AddTeacher extends JPanel implements ActionListener {
         this.add(lastNametitle);
         this.add(firstNametitle);
         this.add(coursetitle);
+        this.add(courseIDtitle);
 
         this.add(id2);
         this.add(email2);
@@ -95,6 +106,7 @@ public class AddTeacher extends JPanel implements ActionListener {
         this.add(lastName2);
         this.add(firstName2);
         this.add(courses);
+        this.add(coursesID);
         this.setBackground(Color.white);
 
 
@@ -105,15 +117,24 @@ public class AddTeacher extends JPanel implements ActionListener {
         try {
             //Connect to Database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/projet?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
-                    "root","");
+            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:8889/Projet",
+                    "root","root");
             Statement query = ((Connection) connect).createStatement();
 
             User user =new User();
             Teacher teacher=new Teacher();
-            Course course = new Course();
+            Course course = new Course(Integer.parseInt(coursesID.getText()),courses.getText());
             DAO<Teacher> teacherDAO = new TeacherDAO(connect);
             DAO<User> userDao = new UserDAO(connect);
+            List<Course> listCourse=new ArrayList<>();
+
+            DAO<Course> courseDAO = new CourseDAO(connect);
+
+            course.setId(Integer.parseInt(coursesID.getText()));
+            course.setName(courses.getText());
+
+            courseDAO.create(course);
+
 
             teacher.setPermission("TEACHER");
             teacher.setId(Integer.parseInt(id2.getText()));
@@ -121,9 +142,9 @@ public class AddTeacher extends JPanel implements ActionListener {
             teacher.setPassword(password2.getText());
             teacher.setLastName(lastName2.getText());
             teacher.setFirstName(firstName2.getText());
-            course.setName(courses.getText());
+            listCourse.add(course);
+            teacher.setListCourse(listCourse);
 
-            teacher.getListCourse().add(course);
             userDao.create(teacher);
             teacherDAO.create(teacher);
 

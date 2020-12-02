@@ -21,6 +21,7 @@ public class AddSession extends JPanel implements ActionListener {
     JTextField endTime = new JTextField();
     JTextField course = new JTextField();
     JTextField state = new JTextField();
+    JTextField type = new JTextField();
 
 
     public AddSession()
@@ -28,7 +29,7 @@ public class AddSession extends JPanel implements ActionListener {
 
         this.setSize(1250,900);
         this.setLayout(null);
-
+        connectDAO.createConnection();
 
 
 
@@ -43,6 +44,7 @@ public class AddSession extends JPanel implements ActionListener {
         JLabel endtimetitle = new JLabel("FIN DE SEANCE :");
         JLabel coursetitle = new JLabel("NOM DU COURS :");
         JLabel statetitle = new JLabel("ETAT :");
+        JLabel typetitle = new JLabel("TYPE DU COURS :");
 
 
 
@@ -54,6 +56,7 @@ public class AddSession extends JPanel implements ActionListener {
         endtimetitle.setFont(police);
         coursetitle.setFont(police);
         statetitle.setFont(police);
+        typetitle.setFont(police);
 
         id6.setFont(police);
         week.setFont(police);
@@ -62,6 +65,7 @@ public class AddSession extends JPanel implements ActionListener {
         endTime.setFont(police);
         course.setFont(police);
         state.setFont(police);
+        type.setFont(police);
 
         question.setBounds(200, 100, 250, 50);
         idtitle.setBounds(200, 150, 150, 20);
@@ -71,6 +75,7 @@ public class AddSession extends JPanel implements ActionListener {
         endtimetitle.setBounds(200, 350, 150, 20);
         coursetitle.setBounds(200, 400, 150, 20);
         statetitle.setBounds(200, 450, 150, 20);
+        typetitle.setBounds(200, 500, 150, 20);
 
         id6.setBounds(400, 150, 150, 20);
         week.setBounds(400, 200, 150, 20);
@@ -79,6 +84,7 @@ public class AddSession extends JPanel implements ActionListener {
         endTime.setBounds(400, 350, 150, 20);
         course.setBounds(400, 400, 150, 20);
         state.setBounds(400, 450, 150, 20);
+        type.setBounds(400, 500, 150, 20);
 
         id6.addActionListener(this);
         week.addActionListener(this);
@@ -87,6 +93,7 @@ public class AddSession extends JPanel implements ActionListener {
         endTime.addActionListener(this);
         course.addActionListener(this);
         state.addActionListener(this);
+        type.addActionListener(this);
 
 
         this.add(question);
@@ -97,6 +104,7 @@ public class AddSession extends JPanel implements ActionListener {
         this.add(endtimetitle);
         this.add(coursetitle);
         this.add(statetitle);
+        this.add(typetitle);
 
         this.add(id6);
         this.add(week);
@@ -105,6 +113,7 @@ public class AddSession extends JPanel implements ActionListener {
         this.add(endTime);
         this.add(course);
         this.add(state);
+        this.add(type);
         this.setBackground(Color.white);
 
 
@@ -116,8 +125,8 @@ public class AddSession extends JPanel implements ActionListener {
         try {
             //Connect to Database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/projet?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
-                    "root","");
+            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:8889/Projet",
+                    "root","root");
             Statement query = ((Connection) connect).createStatement();
 
             Session session = new Session();
@@ -129,8 +138,19 @@ public class AddSession extends JPanel implements ActionListener {
             session.setDate(Integer.parseInt(date.getText()));
             session.setStartTime(Integer.parseInt(startTime.getText()));
             session.setEndTime(Integer.parseInt(endTime.getText()));
-            courseSession.setName(course.getText());
-            session.setCourse(courseSession);
+
+            for (Course course1 : connectDAO.courses) {
+                if (course.getText().equals(course1.getName()))
+                {
+                    session.setCourse(course1);
+                }
+            }
+            for (Type type1 : connectDAO.types) {
+                if (type.getText().equals(type1.getName()))
+                {
+                    session.setType(type1);
+                }
+            }
 
 
             sessionDAO.create(session);

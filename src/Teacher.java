@@ -11,6 +11,14 @@ public class Teacher extends User{
     }
     public Teacher(){};
 
+    public int getIdCourse(){
+        int cours=0;
+        for (Course course : ListCourse) {
+            cours= course.getId();
+        }
+        return cours;
+    }
+
     public List<Course> getListCourse() {
         return ListCourse;
     }

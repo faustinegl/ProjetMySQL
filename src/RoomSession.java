@@ -13,8 +13,8 @@ public class RoomSession extends Session{
         this.rooms = rooms;
     }
 
-    public RoomSession(int id, int week, int date, int startTime, int endTime, Course course, String state, List<Room> rooms) {
-        super(id, week, date, startTime, endTime, course, state);
+    public RoomSession(int id, int week, int date, int startTime, int endTime, Course course, String state, List<Room> rooms,Type type) {
+        super(id, week, date, startTime, endTime, course, state,type);
         this.rooms = rooms;
     }
 }

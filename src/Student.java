@@ -14,9 +14,11 @@ public class Student extends User {
     public int getId(){
         return super.getId();
     }
+
     public int getIdPromo(){
         return promotion.getId();
     }
+
     public int setIdPromo(int promo){
         return promotion.getId();
     }

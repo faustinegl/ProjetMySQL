@@ -1,4 +1,5 @@
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,7 +15,15 @@ public class TeacherDAO extends DAO<Teacher> {
     }
 
     @Override
-    public boolean create(Teacher obj) {
+    public boolean create(Teacher teacher) {
+        try (PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO Teacher (ID_USER,ID_COURSE) VALUES (?, ?)")) {
+            // On ne set pas l'id, la base s'en occupe toute seule (autoincrement)
+            preparedStatement.setInt(1, teacher.getId());
+            preparedStatement.setInt(2, teacher.getIdCourse());
+            preparedStatement.execute();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return false;
     }
 
@@ -28,7 +37,7 @@ public class TeacherDAO extends DAO<Teacher> {
         return false;
     }
 
-    public Teacher find(int id, User user, List<Promotion>promotions,List<Course>courses, List <Site> sites) {
+    public Teacher find(int id, User user, List<Promotion>promotions,List<Course>courses, List <Site> sites,List<Type>types) {
         Set<Integer>idCourses = new HashSet<>();
 
         Teacher teacher = new Teacher();

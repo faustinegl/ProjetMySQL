@@ -25,7 +25,7 @@ public class AddStudent extends JPanel implements ActionListener {
 
     public AddStudent()
     {
-
+        connectDAO.createConnection();
         this.setSize(1250,900);
         this.setLayout(null);
 
@@ -116,8 +116,8 @@ public class AddStudent extends JPanel implements ActionListener {
         try {
             //Connect to Database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/projet?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
-                    "root","");
+            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:8889/Projet",
+                    "root","root");
             Statement query = ((Connection) connect).createStatement();
 
         User user =new User();
@@ -133,7 +133,8 @@ public class AddStudent extends JPanel implements ActionListener {
         student.setFirstName(firstName1.getText());
         student.setNumber(Integer.parseInt(number1.getText()));
 
-        for (Promotion promo : connectDAO.promotions) {
+        //System.out.println(connectDAO.getPromotions().get(1).getName());
+        for (Promotion promo : connectDAO.getPromotions()) {
             if (promotion1.getText().equals(promo.getName()))
             {
                 student.setPromotion(promo);

@@ -10,8 +10,9 @@ public class Session {
     private int endTime;
     private Course course ;
     private String state ;
+    private Type type;
 
-    public Session(int id, int week, int date, int startTime, int endTime, Course course, String state) {
+    public Session(int id, int week, int date, int startTime, int endTime, Course course, String state, Type type) {
         this.id = id;
         this.week = week;
         this.date = date;
@@ -19,11 +20,19 @@ public class Session {
         this.endTime = endTime;
         this.course = course;
         this.state = state;
+        this.type=type;
     }
     Session(){}
 
     public int getId() {
         return id;
+    }
+
+    public int getIdCourse(){
+        return course.getId();
+    }
+    public int getIdType(){
+        return type.getId();
     }
 
     public void setId(int id) {
@@ -77,4 +86,8 @@ public class Session {
     public void setState(String state) {
         this.state = state;
     }
+
+    public Type getType(){ return type; }
+
+    public void setType(Type type){this.type=type;}
 }

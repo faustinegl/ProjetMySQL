@@ -1,4 +1,5 @@
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -10,7 +11,15 @@ public class CourseDAO extends DAO<Course>{
     }
 
     @Override
-    public boolean create(Course obj) {
+    public boolean create(Course course) {
+        try (PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO Course (ID,NAME) VALUES (?, ?)")) {
+            // On ne set pas l'id, la base s'en occupe toute seule (autoincrement)
+            preparedStatement.setInt(1, course.getId());
+            preparedStatement.setString(2, course.getName());
+            preparedStatement.execute();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return false;
     }
 
@@ -25,7 +34,7 @@ public class CourseDAO extends DAO<Course>{
     }
 
     @Override
-    public Course find(int id, User user, List<Promotion>promotions,List<Course>courses, List <Site> sites) {
+    public Course find(int id, User user, List<Promotion>promotions,List<Course>courses, List <Site> sites,List<Type>types) {
 
         Course course =new Course();
 

@@ -18,6 +18,10 @@ public class Room {
         return id;
     }
 
+    public int getIdSite(){
+        return site.getId();
+    }
+
     public void setId(int id) {
         this.id = id;
     }

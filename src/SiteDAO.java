@@ -1,4 +1,5 @@
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -10,7 +11,15 @@ public class SiteDAO extends DAO<Site>{
     }
 
     @Override
-    public boolean create(Site obj) {
+    public boolean create(Site site) {
+        try (PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO Site (ID,SITE) VALUES (?, ?)")) {
+            // On ne set pas l'id, la base s'en occupe toute seule (autoincrement)
+            preparedStatement.setInt(1, site.getId());
+            preparedStatement.setString(2, site.getName());
+            preparedStatement.execute();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return false;
     }
 
@@ -25,7 +34,7 @@ public class SiteDAO extends DAO<Site>{
     }
 
     @Override
-    public Site find(int id, User user, List<Promotion> promotions,List<Course>courses, List <Site> sites) {
+    public Site find(int id, User user, List<Promotion> promotions,List<Course>courses, List <Site> sites,List<Type>types) {
         Site site=new Site();
 
         try {
