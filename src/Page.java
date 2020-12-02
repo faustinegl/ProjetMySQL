@@ -1,13 +1,6 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
-import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 public class Page extends JFrame implements ActionListener {
@@ -21,10 +14,16 @@ public class Page extends JFrame implements ActionListener {
     AddRoom addRoom=new AddRoom();
     AddSession addSession=new AddSession();
     AddSite addSite=new AddSite();
+    UserJFrame userJFrame=new UserJFrame();
+
+    DeleteStudent deleteStudent=new DeleteStudent();
+    DeleteTeacher deleteTeacher=new DeleteTeacher();
+    DeleteSession deleteSession=new DeleteSession();
 
 
     ConnectDAO connectDAO = new ConnectDAO();
     Add add= new Add();
+    Delete delete=new Delete();
 
 
 
@@ -35,7 +34,7 @@ public class Page extends JFrame implements ActionListener {
         this.setSize(1250, 900);
 //        this.setDefaultLookAndFeelDecorated(true);
         this.setLayout(null);
-        this.add(addSite);
+        this.add(deleteSession);
         this.setVisible(true);
         homePage.validated.addActionListener(this);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

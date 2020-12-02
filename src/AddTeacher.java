@@ -133,7 +133,7 @@ public class AddTeacher extends JPanel implements ActionListener {
             course.setId(Integer.parseInt(coursesID.getText()));
             course.setName(courses.getText());
 
-            courseDAO.create(course);
+            courseDAO.update(course);
 
 
             teacher.setPermission("TEACHER");
@@ -145,8 +145,8 @@ public class AddTeacher extends JPanel implements ActionListener {
             listCourse.add(course);
             teacher.setListCourse(listCourse);
 
-            userDao.create(teacher);
-            teacherDAO.create(teacher);
+            userDao.update(teacher);
+            teacherDAO.update(teacher);
 
         }
 

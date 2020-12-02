@@ -9,62 +9,41 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class AddCourse extends JPanel implements ActionListener {
+public class DeleteSession extends JPanel implements ActionListener {
 
     ConnectDAO connectDAO = new ConnectDAO();
 
+    JTextField id1 = new JTextField();
 
-    JTextField id3 = new JTextField();
-    JTextField name3 = new JTextField();
-
-
-
-    public AddCourse() {
-
-        this.setSize(1250, 900);
+    public DeleteSession(){
+        connectDAO.createConnection();
+        this.setSize(1250,900);
         this.setLayout(null);
 
 
         Font police = new Font("Arial", Font.BOLD, 10);
 
-        JLabel question = new JLabel("Renseignez les informations suivantes");
+        JLabel question = new JLabel("Renseignez l'ID de la session a supprimer");
         JLabel idtitle = new JLabel("ID :");
-        JLabel nametitle = new JLabel("NOM DU COURS:");
-
-
 
         question.setFont(police);
         idtitle.setFont(police);
-        nametitle.setFont(police);
 
-
-        id3.setFont(police);
-        name3.setFont(police);
-
+        id1.setFont(police);
 
         question.setBounds(200, 100, 250, 50);
         idtitle.setBounds(200, 150, 150, 20);
-        nametitle.setBounds(200, 200, 150, 20);
 
+        id1.setBounds(400, 150, 150, 20);
 
-        id3.setBounds(400, 150, 150, 20);
-        name3.setBounds(400, 200, 150, 20);
-
-        id3.addActionListener(this);
-        name3.addActionListener(this);
-
+        id1.addActionListener(this);
 
         this.add(question);
         this.add(idtitle);
-        this.add(nametitle);
 
-
-        this.add(id3);
-        this.add(name3);
-        this.setBackground(Color.white);
-
-
+        this.add(id1);
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
@@ -74,13 +53,13 @@ public class AddCourse extends JPanel implements ActionListener {
                     "root","root");
             Statement query = ((Connection) connect).createStatement();
 
-            Course course = new Course();
-            DAO<Course> courseDAO = new CourseDAO(connect);
+            Session session=new Session();
+            DAO<Session> sessionDAO = new SessionDAO(connect);
 
-            course.setId(Integer.parseInt(id3.getText()));
-            course.setName(name3.getText());
 
-            courseDAO.update(course);
+            session.setId(Integer.parseInt(id1.getText()));
+
+            sessionDAO.delete(session);
 
         }
 
@@ -93,7 +72,11 @@ public class AddCourse extends JPanel implements ActionListener {
             ex.printStackTrace();
         }
 
-    }
+
+
+
 
     }
+
+}
 

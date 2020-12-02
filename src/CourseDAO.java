@@ -11,7 +11,7 @@ public class CourseDAO extends DAO<Course>{
     }
 
     @Override
-    public boolean create(Course course) {
+    public boolean update(Course course) {
         try (PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO Course (ID,NAME) VALUES (?, ?)")) {
             // On ne set pas l'id, la base s'en occupe toute seule (autoincrement)
             preparedStatement.setInt(1, course.getId());
@@ -29,7 +29,7 @@ public class CourseDAO extends DAO<Course>{
     }
 
     @Override
-    public boolean update(Course obj) {
+    public boolean create(Course obj) {
         return false;
     }
 

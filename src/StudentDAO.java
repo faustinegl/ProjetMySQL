@@ -12,7 +12,7 @@ public class StudentDAO extends DAO<Student> {
         super(conn);
     }
 
-    public boolean create(Student student) {
+    public boolean update(Student student) {
         try (PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO Student (ID_USER,NUMBER,ID_PROMOTION) VALUES (?, ?,?)")) {
             // On ne set pas l'id, la base s'en occupe toute seule (autoincrement)
             preparedStatement.setInt(1, student.getId());
@@ -26,11 +26,20 @@ public class StudentDAO extends DAO<Student> {
     }
 
 
-    public boolean delete(Student obj) {
+    public boolean delete(Student student) {
+
+        try (PreparedStatement preparedStatement = connect.prepareStatement("DELETE FROM student WHERE ID_USER=?");){
+            preparedStatement.setInt(1,student.getId());
+            preparedStatement.executeUpdate();
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return false;
     }
 
-    public boolean update(Student obj) {
+    public boolean create(Student obj) {
         return false;
     }
 

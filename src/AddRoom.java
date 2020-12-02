@@ -107,7 +107,7 @@ public class AddRoom extends JPanel implements ActionListener {
                 }
             }
 
-            roomDAO.create(room);
+            roomDAO.update(room);
 
         }
 

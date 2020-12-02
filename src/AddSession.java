@@ -153,7 +153,7 @@ public class AddSession extends JPanel implements ActionListener {
             }
 
 
-            sessionDAO.create(session);
+            sessionDAO.update(session);
 
         }
 

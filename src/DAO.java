@@ -15,7 +15,7 @@ public abstract class DAO<T> {
      * @param obj
      * @return boolean
      */
-    public abstract boolean create(T obj);
+    public abstract boolean update(T obj);
 
     /**
      * Méthode pour effacer
@@ -29,7 +29,7 @@ public abstract class DAO<T> {
      * @param obj
      * @return boolean
      */
-    public abstract boolean update(T obj);
+    public abstract boolean create(T obj);
 
     /**
      * Méthode de recherche des informations

@@ -11,7 +11,7 @@ public class TypeDAO extends DAO<Type>{
     }
 
     @Override
-    public boolean create(Type type) {
+    public boolean update(Type type) {
         try (PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO type_course (ID,NAME) VALUES (?, ?)")) {
             // On ne set pas l'id, la base s'en occupe toute seule (autoincrement)
             preparedStatement.setInt(1, type.getId());
@@ -29,7 +29,7 @@ public class TypeDAO extends DAO<Type>{
     }
 
     @Override
-    public boolean update(Type obj) {
+    public boolean create(Type obj) {
         return false;
     }
 

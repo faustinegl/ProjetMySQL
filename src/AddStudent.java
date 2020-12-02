@@ -141,8 +141,8 @@ public class AddStudent extends JPanel implements ActionListener {
             }
         }
 
-        userDao.create(student);
-        studentDao.create(student);
+        userDao.update(student);
+        studentDao.update(student);
 
         }
 

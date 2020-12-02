@@ -80,7 +80,7 @@ public class AddPromotion extends JPanel implements ActionListener {
             promotion.setId(Integer.parseInt(id4.getText()));
             promotion.setName(name4.getText());
 
-            promotionDAO.create(promotion);
+            promotionDAO.update(promotion);
 
         }
 

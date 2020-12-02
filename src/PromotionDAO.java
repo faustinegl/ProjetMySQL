@@ -11,7 +11,7 @@ public class PromotionDAO extends DAO<Promotion>{
     }
 
     @Override
-    public boolean create(Promotion promotion) {
+    public boolean update(Promotion promotion) {
         try (PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO Promotion (ID,NAME) VALUES (?, ?)")) {
             // On ne set pas l'id, la base s'en occupe toute seule (autoincrement)
             preparedStatement.setInt(1, promotion.getId());
@@ -29,7 +29,7 @@ public class PromotionDAO extends DAO<Promotion>{
     }
 
     @Override
-    public boolean update(Promotion obj) {
+    public boolean create(Promotion obj) {
         return false;
     }
 

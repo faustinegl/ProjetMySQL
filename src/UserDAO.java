@@ -10,7 +10,7 @@ public class UserDAO extends DAO<User> {
     }
 
     @Override
-    public boolean create(User user) {
+    public boolean update(User user) {
         try (PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO User (ID,EMAIL,PASSWORD,LAST_NAME,FIRST_NAME,PERMISSION) VALUES (?, ?, ?,?, ?, ?)")) {
             // On ne set pas l'id, la base s'en occupe toute seule (autoincrement)
             preparedStatement.setInt(1, user.getId());
@@ -27,12 +27,21 @@ public class UserDAO extends DAO<User> {
     }
 
     @Override
-    public boolean delete(User obj) {
+    public boolean delete(User user) {
+
+        try (PreparedStatement preparedStatement = connect.prepareStatement("DELETE FROM User WHERE ID=?");){
+            preparedStatement.setInt(1,user.getId());
+            preparedStatement.executeUpdate();
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return false;
     }
 
     @Override
-    public boolean update(User obj) {
+    public boolean create(User obj) {
         return false;
     }
 

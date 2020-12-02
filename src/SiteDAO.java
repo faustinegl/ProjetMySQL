@@ -11,7 +11,7 @@ public class SiteDAO extends DAO<Site>{
     }
 
     @Override
-    public boolean create(Site site) {
+    public boolean update(Site site) {
         try (PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO Site (ID,SITE) VALUES (?, ?)")) {
             // On ne set pas l'id, la base s'en occupe toute seule (autoincrement)
             preparedStatement.setInt(1, site.getId());
@@ -24,12 +24,20 @@ public class SiteDAO extends DAO<Site>{
     }
 
     @Override
-    public boolean delete(Site obj) {
+    public boolean delete(Site site) {
+        try (PreparedStatement preparedStatement = connect.prepareStatement("DELETE FROM site WHERE ID=?");){
+            preparedStatement.setInt(1,site.getId());
+            preparedStatement.executeUpdate();
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return false;
     }
 
     @Override
-    public boolean update(Site obj) {
+    public boolean create(Site obj) {
         return false;
     }
 

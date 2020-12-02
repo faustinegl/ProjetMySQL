@@ -80,7 +80,7 @@ public class AddSite extends JPanel implements ActionListener {
             site.setId(Integer.parseInt(id5.getText()));
             site.setName(name5.getText());
 
-            siteDAO.create(site);
+            siteDAO.update(site);
 
         }
 

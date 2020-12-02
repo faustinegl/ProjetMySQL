@@ -11,7 +11,7 @@ public class RoomDAO extends DAO<Room> {
         super(conn);
     }
 
-    public boolean create(Room room) {
+    public boolean update(Room room) {
         try (PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO Room (ID,NAME,CAPACITY,ID_SITE) VALUES (?, ?,?,?)")) {
             // On ne set pas l'id, la base s'en occupe toute seule (autoincrement)
             preparedStatement.setInt(1, room.getId());
@@ -25,11 +25,19 @@ public class RoomDAO extends DAO<Room> {
         return false;
     }
 
-    public boolean delete(Room obj) {
+    public boolean delete(Room room) {
+        try (PreparedStatement preparedStatement = connect.prepareStatement("DELETE FROM room WHERE ID=?");){
+            preparedStatement.setInt(1,room.getId());
+            preparedStatement.executeUpdate();
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return false;
     }
 
-    public boolean update(Room obj) {
+    public boolean create(Room obj) {
         return false;
     }
 

@@ -14,7 +14,7 @@ public class SessionDAO extends DAO<Session> {
         super(conn);
     }
 
-    public boolean create(Session session) {
+    public boolean update(Session session) {
         try (PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO Session (ID,WEEK,DATE,START_TIME,END_TIME,STATE,ID_COURSE,ID_TYPE) VALUES (?, ?,?,?,?, ?,?,?)")) {
             // On ne set pas l'id, la base s'en occupe toute seule (autoincrement)
             preparedStatement.setInt(1, session.getId());
@@ -32,11 +32,20 @@ public class SessionDAO extends DAO<Session> {
         return false;
     }
 
-    public boolean delete(Session obj) {
+    public boolean delete(Session session) {
+
+        try (PreparedStatement preparedStatement = connect.prepareStatement("DELETE FROM session WHERE ID=?");){
+            preparedStatement.setInt(1,session.getId());
+            preparedStatement.executeUpdate();
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return false;
     }
 
-    public boolean update(Session obj) {
+    public boolean create(Session obj) {
         return false;
     }
 
