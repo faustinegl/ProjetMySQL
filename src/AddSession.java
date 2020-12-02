@@ -138,6 +138,7 @@ public class AddSession extends JPanel implements ActionListener {
             session.setDate(Integer.parseInt(date.getText()));
             session.setStartTime(Integer.parseInt(startTime.getText()));
             session.setEndTime(Integer.parseInt(endTime.getText()));
+            session.setState(state.getText());
 
             for (Course course1 : connectDAO.courses) {
                 if (course.getText().equals(course1.getName()))
