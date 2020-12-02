@@ -14,6 +14,9 @@ public class Page extends JFrame implements ActionListener {
 
     HomePage homePage = new HomePage();
     Menu menu = new Menu();
+    AddStudent addStudent= new AddStudent();
+
+
     ConnectDAO connectDAO = new ConnectDAO();
 
 
@@ -25,7 +28,7 @@ public class Page extends JFrame implements ActionListener {
         this.setSize(1250, 900);
 //        this.setDefaultLookAndFeelDecorated(true);
         this.setLayout(null);
-        this.add(homePage);
+        this.add(addStudent);
         this.setVisible(true);
         homePage.validated.addActionListener(this);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,65 +38,43 @@ public class Page extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+
         String email = homePage.textEmail.getText();
         String password = new String(homePage.textPassWord.getPassword());
         JDialog errorMessage = new JDialog(this,"Email ou mot de passe incorrect",true );
-       errorMessage.setLayout(null);
-        /*try {
+        errorMessage.setLayout(null);
 
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:8889/Projet"
-                    , "root", "root");
 
-            Statement instruction = connect.createStatement();
-            ResultSet resultat = instruction.executeQuery("SELECT * FROM User");*/
-
-            for (User user : connectDAO.users)
-                if ((email.equals(user.getEmail()) && (password.equals(user.getPassword())))) {
-                    errorMessage.setVisible(false);
-                    switch (user.getPermission()) {
-                        case ("TEACHER") -> {
-                            menu.add(menu.timeTableTeacher.getTimePane());
-                            this.setContentPane(menu);
-                            this.revalidate();
-                        }
-                        case ("STUDENT") -> {
-                            menu.add(menu.timeTableStudent.getTimePane());
-                            this.setContentPane(menu);
-                            this.revalidate();
-                        }
+        for (User user : connectDAO.users)
+            if ((email.equals(user.getEmail()) && (password.equals(user.getPassword())))) {
+                switch (user.getPermission()) {
+                    case ("TEACHER") -> {
+                        menu.add(menu.timeTableTeacher.getTimePane());
+                        this.setContentPane(menu);
+                        this.revalidate();
                     }
-
-                }
-
-                else {
-                    errorMessage.setBounds(350, 125, 500, 20);
-                    errorMessage.setBackground(Color.RED);
-                    errorMessage.setVisible(true);
-                    errorMessage.dispose();
+                    case ("STUDENT") -> {
+                        menu.add(menu.timeTableStudent.getTimePane());
+                        this.setContentPane(menu);
+                        this.revalidate();
+                    }
+                    case ("ADMIN") -> {
+                        menu.add(menu.timeTablePromotion.getTimePane());
+                        this.setContentPane(menu);
+                        this.revalidate();
+                    }
+                    case ("PEDA") -> {
+                        menu.add(menu.timeTableRoom.getTimePane());
+                        this.setContentPane(menu);
+                        this.revalidate();
+                    }
                 }
 
             }
 
 
-        } /*catch (SQLException ex) {
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
-            ex.printStackTrace();
-        }*/
+
+    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}

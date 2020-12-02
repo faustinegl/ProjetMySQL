@@ -31,11 +31,11 @@ public class TimeTableRoom extends TimeTable{
         {
             return timePane ;
         }
-    @Override
+    /*@Override
     public void setValueAt(String value, int row, int col) {
         lines[row][col] = value;
 
-    }
+    }*/
 
 
 }

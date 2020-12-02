@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ConnectDAO {
+
     List<User> users = new ArrayList<>();
     List<Student> students = new ArrayList<>();
     List<Teacher> teachers = new ArrayList<>();
@@ -22,8 +23,8 @@ public class ConnectDAO {
         try {
             //Connect to Database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:8889/Projet", "root", "root");
-
+            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/projet?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+                    "root","");
             Statement query = ((Connection) connect).createStatement();
 
 
@@ -97,7 +98,7 @@ public class ConnectDAO {
 
 
             for (User user : users) {
-                System.out.println(user.getId() + " : " + user.getFirstName() + "  - ");
+                System.out.println(user.getPermission() + " : " + user.getFirstName() + "  - ");
 
             }
             System.out.println("LISTE ELEVES :");
@@ -134,7 +135,7 @@ public class ConnectDAO {
             }
 
 
-            User user =new User();
+  /*          User user =new User();
             Student student=new Student();
             Promotion promotion=new Promotion();
             int choice=0,id=0,number=0,idPromo=0;
@@ -161,6 +162,7 @@ public class ConnectDAO {
 
                 password=scanner2.nextLine();
                 student.setPassword(password);
+
 
                 firstname=scanner2.nextLine();
                 student.setFirstName(firstname);
@@ -192,7 +194,7 @@ public class ConnectDAO {
             else if(choice==2)
             {
 
-            }
+            }*/
 
         }
 

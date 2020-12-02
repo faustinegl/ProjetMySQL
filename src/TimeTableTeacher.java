@@ -7,13 +7,14 @@ public class TimeTableTeacher extends TimeTable {
 
         super();
 
-        String[][] lines = {
-                {"Lundi", "Cours prof", "", "Cours 2", "", "", "", "", "", "", "", "", "", ""},
-                {"Mardi", "Cours 1", "Cours 2", "", "", "", "", "", "", "", "", "", "", ""},
-                {"Mercredi", "Cours 1", "Cours 2", "", "", "", "", "", "", "", "", "", "", ""},
-                {"Jeudi", "Cours 1", "Cours 2", "", "", "", "", "", "", "", "", "", "", ""},
-                {"Vendredi", "Cours 1", "Cours 2", "", "", "", "", "", "", "", "", "", "", ""},
-                {"Samedi", "Cours 1", "Cours 2", "", "", "", "", "", "", "", "", "", "", ""},
+        String[][]  lines= {
+
+                { "","", "", "" ,"","","","","","","","","",""},
+                { "","", "", "","","","","","","","","","","" },
+                { "","", "", "","","","","","","","","","","" },
+                { "","", "", "","","","","","","","","","","" },
+                { "","", "", "","","","","","","","","","","" },
+                { "","", "", "","","","","","","","","","","" },
         };
 
         // Column Names
@@ -31,11 +32,11 @@ public class TimeTableTeacher extends TimeTable {
         return timePane;
     }
 
-    @Override
+   /* @Override
     public void setValueAt(String value, int row, int col) {
         lines[row][col] = value;
 
-    }
+    }*/
 }
 
 

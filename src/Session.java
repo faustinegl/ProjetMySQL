@@ -5,13 +5,13 @@ public class Session {
     public enum State {IN_PROCESS,VALIDATES, CANCELLED}
     private int id;
     private int week ;
-    private String date;
+    private int date;
     private int startTime;
     private int endTime;
     private Course course ;
     private String state ;
 
-    public Session(int id, int week, String date, int startTime, int endTime, Course course, String state) {
+    public Session(int id, int week, int date, int startTime, int endTime, Course course, String state) {
         this.id = id;
         this.week = week;
         this.date = date;
@@ -38,11 +38,11 @@ public class Session {
         this.week = week;
     }
 
-    public String getDate() {
+    public int getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(int date) {
         this.date = date;
     }
 

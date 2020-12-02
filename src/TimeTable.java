@@ -22,7 +22,7 @@ public abstract class TimeTable extends JPanel implements ActionListener {
 
 
     public abstract JScrollPane getTimePane ();
-     public abstract void setValueAt(String value, int row, int col);
+    // public abstract void setValueAt(String value, int row, int col);
 
     @Override
     public void actionPerformed(ActionEvent e) {

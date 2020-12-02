@@ -44,7 +44,7 @@ public class SessionDAO extends DAO<Session> {
                 }
 
                 session = new Session(id, result.getInt("WEEK"),
-                        result.getString("DATE"),
+                        result.getInt("DATE"),
                         result.getInt("START_TIME"),
                         result.getInt("END_TIME"),
                         course, result.getString("STATE"));
