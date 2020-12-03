@@ -7,7 +7,19 @@ import java.util.List;
 
 public class MenuAdmin extends JPanel implements ActionListener {
 
-    JButton[] buttons = new JButton[52];
+    JButton buttonAdd= new JButton("Ajout");
+    JButton buttonDelete= new JButton("Suppression");
+    JButton buttonModify= new JButton("Cours");
+    JButton students= new JButton("Etudiants");
+    JButton promotions= new JButton("Promotion");
+    JButton teachers= new JButton("Professeurs");
+    JButton rooms= new JButton("Salles");
+
+
+
+
+
+    /*JButton[] buttons = new JButton[52];
     ConnectDAO connectDAO = new ConnectDAO();
     JScrollPane timePane;
     String[][]  lines= {
@@ -18,7 +30,7 @@ public class MenuAdmin extends JPanel implements ActionListener {
             { "Jeudi","", "", "","","","","","","","","","","" },
             { "Vendredi","", "", "","","","","","","","","","","" },
             { "Samedi","", "", "","","","","","","","","","","" },
-    };
+    };*/
 
     public MenuAdmin()
     {
@@ -30,13 +42,17 @@ public class MenuAdmin extends JPanel implements ActionListener {
         Font policeTitre = new Font("Arial",Font.BOLD,15);
         Font policeChiffre = new Font("Arial",Font.BOLD,10);
 
+        JLabel labelFond = new JLabel(new ImageIcon("PHOTOS/homepage.png"));
+        labelFond.setBounds(0,0,1250,900);
+        labelFond.setSize(1460,677);
+/*
         JLabel titre=new JLabel("Emploi du temps :");
         titre.setFont(policeTitre);
         titre.setBounds(10,95,150,30);
 
-        int nb=0;
+        int nb=0;*/
 
-        for (int j = 0; j < 2 ; j++){
+        /*for (int j = 0; j < 2 ; j++){
             for (int i=0;i<26;i++) {
                 buttons[nb] = new JButton();
                 buttons[nb].setBounds(50+(i * 45), 140+(j*23), 45, 23);
@@ -99,58 +115,52 @@ public class MenuAdmin extends JPanel implements ActionListener {
         buttons[49].setText("28");
         buttons[50].setText("30");
         buttons[51].setText("31");
+*/
 
-        titre.setFont(policeTitre);
-        titre.setBounds(10,95,150,30);
 
-        JButton home= new JButton("Menu");
-        JButton courses= new JButton("Cours");
-        JButton students= new JButton("Etudiants");
-        JButton promotions= new JButton("Promotion");
-        JButton teachers= new JButton("Professeurs");
-        JButton rooms= new JButton("Salles");
 
-        home.setBounds(0,60,70,30);
-        courses.setBounds(70,60,120,30);
-        students.setBounds(190,60,120,30);
-        promotions.setBounds(310,60,120,30);
-        teachers.setBounds(430,60,120,30);
-        rooms.setBounds(550,60,120,30);
+        students.setBounds(0,10,120,30);
+        teachers.setBounds(120,10,120,30);
+        promotions.setBounds(240,10,120,30);
+        rooms.setBounds(360,10,120,30);
+        buttonAdd.setBounds(480,10,120,30);
+        buttonDelete.setBounds(600,10,120,30);
+        buttonModify.setBounds(720,10,120,30);
 
-        home.setFont(police);
-        courses.setFont(police);
+        buttonDelete.setFont(police);
+        buttonModify.setFont(police);
         students.setFont(police);
         promotions.setFont(police);
         teachers.setFont(police);
         rooms.setFont(police);
+        buttonAdd.setFont(police);
+
 
         //this.add(timeTableRoom.getTimePane());
-        this.add(titre);
-        this.add(home);
-        this.add(courses);
+        //this.add(titre);
+        this.add(buttonDelete);
+        this.add(buttonModify);
         this.add(students);
         this.add(promotions);
         this.add(teachers);
         this.add(rooms);
+        this.add(buttonAdd);
         this.setBackground(Color.white);
+        this.add(labelFond);
 
 
 
-
-        this.add(titre);
-        this.setBackground(Color.white);
-
-        String[][]  lines= {
+       /* String[][]  lines= {
 
                 { "Lundi","", "", "" ,"","","","","","","","","",""},
                 { "Mardi","", "", "","","","","","","","","","","" },
                 { "Mercredi","", "", "","","","","","","","","","","" },
                 { "Jeudi","", "", "","","","","","","","","","","" },
                 { "Vendredi","", "", "","","","","","","","","","","" },
-                { "Samedi","", "", "","","","","","","","","","","" },
+                { "Samedi","", "", "","","","","","","","","","","" },*/
         };
 
-        String[] columns = { "Jours","8h", "9h", "10h","11h","12h","13h","14h","15h","16h","17h","18h","19h","20h" };
+        /*String[] columns = { "Jours","8h", "9h", "10h","11h","12h","13h","14h","15h","16h","17h","18h","19h","20h" };
         JTable timeTableStudent = new JTable(lines,columns);
         timeTableStudent.setRowHeight(65);
 
@@ -165,13 +175,13 @@ public class MenuAdmin extends JPanel implements ActionListener {
         sp.setBounds(30, 200, 1200, 415);
         this.timePane= sp;
         this.add(timePane);
+*/
 
-    }
-
+/*
     public JScrollPane getTimePane ()
     {
         return timePane ;
-    }
+    }*/
 
     @Override
     public void actionPerformed(ActionEvent e) {
