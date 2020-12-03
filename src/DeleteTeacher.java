@@ -23,6 +23,10 @@ public class DeleteTeacher extends JPanel implements ActionListener {
 
         Font police = new Font("Arial", Font.BOLD, 10);
 
+        JLabel labelFond = new JLabel(new ImageIcon("PHOTOS/homepage.png"));
+        labelFond.setBounds(0,0,1250,900);
+        labelFond.setSize(1460,677);
+
         JLabel question = new JLabel("Renseignez l'ID du professeur a supprimer");
         JLabel idtitle = new JLabel("ID :");
 
@@ -42,6 +46,8 @@ public class DeleteTeacher extends JPanel implements ActionListener {
         this.add(idtitle);
 
         this.add(id1);
+
+        this.add(labelFond);
     }
 
     @Override

@@ -26,6 +26,10 @@ public class AddSite extends JPanel implements ActionListener {
 
         Font police = new Font("Arial", Font.BOLD, 10);
 
+        JLabel labelFond = new JLabel(new ImageIcon("PHOTOS/homepage.png"));
+        labelFond.setBounds(0,0,1250,900);
+        labelFond.setSize(1460,677);
+
         JLabel question = new JLabel("Renseignez les informations suivantes");
         JLabel idtitle = new JLabel("ID :");
         JLabel nametitle = new JLabel("NOM DU SITE:");
@@ -61,6 +65,7 @@ public class AddSite extends JPanel implements ActionListener {
         this.add(id5);
         this.add(name5);
         this.setBackground(Color.white);
+        this.add(labelFond);
 
 
     }
@@ -69,8 +74,8 @@ public class AddSite extends JPanel implements ActionListener {
         try {
             //Connect to Database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:8889/Projet",
-                    "root","root");
+            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/projet?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+                    "root","");
             Statement query = ((Connection) connect).createStatement();
 
 

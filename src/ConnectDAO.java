@@ -25,7 +25,8 @@ public class ConnectDAO {
         try {
             //Connect to Database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:8889/Projet", "root", "root");
+            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/projet?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+                    "root","");
 
             Statement query = ((Connection) connect).createStatement();
 
@@ -107,7 +108,7 @@ public class ConnectDAO {
 
 
 
-
+/*
             for (User user : users) {
                 System.out.println(user.getPermission() + " : " + user.getFirstName() + "  - ");
 
@@ -128,10 +129,10 @@ public class ConnectDAO {
 
             }
             System.out.println();
-            /*for (Room room : rooms) {
+            *//*for (Room room : rooms) {
                 System.out.println("Capacite " + room.getCapacity() + "  - ");
 
-            }*/
+            }*//*
             System.out.println("LISTE SALLES :");
             for (Room room : rooms) {
 
@@ -144,7 +145,7 @@ public class ConnectDAO {
                 System.out.println(session.getId()+ " -"+session.getWeek() + "  - "+ session.getDate()+" -"+
                         session.getStartTime()+" -"+ session.getEndTime()+ " -"+ session.getCourse().getName()+" -"+
                         session.getState()+ " -"+ session.getType().getName());
-            }
+            }*/
 
 
 
