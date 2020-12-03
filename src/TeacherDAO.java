@@ -38,7 +38,7 @@ public class TeacherDAO extends DAO<Teacher> {
     }
 
     @Override
-    public boolean modify(Teacher obj,Teacher obj2) {
+    public boolean modify(Teacher obj) {
         return false;
     }
 

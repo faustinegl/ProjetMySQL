@@ -37,7 +37,7 @@ public class RoomDAO extends DAO<Room> {
         return false;
     }
 
-    public boolean modify(Room obj,Room obj2) {
+    public boolean modify(Room obj) {
         return false;
     }
 
