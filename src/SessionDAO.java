@@ -45,7 +45,26 @@ public class SessionDAO extends DAO<Session> {
         return false;
     }
 
-    public boolean modify(Session obj) {
+    public boolean modify(Session session) {
+
+        try (PreparedStatement preparedStatement = connect.prepareStatement("UPDATE session SET WEEK=?,DATE=?, START_TIME=?, END_TIME=?, STATE=?, ID_COURSE=?, " +
+                "ID_TYPE=? WHERE ID=?");){
+            preparedStatement.setInt(1,session.getWeek());
+            preparedStatement.setInt(2,session.getDate());
+            preparedStatement.setInt(3,session.getStartTime());
+            preparedStatement.setInt(4,session.getEndTime());
+            preparedStatement.setString(5,session.getState());
+            preparedStatement.setInt(6,session.getIdCourse());
+            preparedStatement.setInt(7,session.getIdType());
+            preparedStatement.setInt(8,session.getId());
+
+
+            preparedStatement.executeUpdate();
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return false;
     }
 

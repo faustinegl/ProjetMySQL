@@ -8,6 +8,7 @@ public class TimeTablePromotionList extends JPanel implements ActionListener {
     ConnectDAO connectDAO = new ConnectDAO();
     ResearchPromotion researchPromotion = new ResearchPromotion();
 
+
     TimeTablePromotionList()
     {
 
@@ -53,7 +54,7 @@ public class TimeTablePromotionList extends JPanel implements ActionListener {
 
 }*/
     JScrollPane sp = new JScrollPane(timeTablePromotion);
-        sp.setBounds(30, 200, 1200, 415);
+        sp.setBounds(30, 300, 1200, 315);
         this.timePane = sp;
 }
 

@@ -8,6 +8,8 @@ public class TimeTableRoomList extends JPanel implements ActionListener {
     ConnectDAO connectDAO = new ConnectDAO();
     ResearchRoom researchRoom = new ResearchRoom();
 
+
+
     TimeTableRoomList()
     {
 
@@ -51,7 +53,7 @@ public class TimeTableRoomList extends JPanel implements ActionListener {
             }
         }*/
         JScrollPane sp = new JScrollPane(timeTableRoom);
-        sp.setBounds(30, 200, 1200, 415);
+        sp.setBounds(30, 300, 1200, 315);
         this.timePane = sp;
     }
 

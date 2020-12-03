@@ -8,6 +8,7 @@ public class TimeTableStudentList extends JPanel implements ActionListener {
     ConnectDAO connectDAO = new ConnectDAO();
     ResearchStudent researchStudent = new ResearchStudent();
 
+
     TimeTableStudentList()
     {
 
@@ -51,7 +52,7 @@ public class TimeTableStudentList extends JPanel implements ActionListener {
             }
         }*/
         JScrollPane sp = new JScrollPane(timeTableStudent);
-        sp.setBounds(30, 200, 1200, 415);
+        sp.setBounds(30, 300, 1200, 315);
         this.timePane = sp;
     }
 
