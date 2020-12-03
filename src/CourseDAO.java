@@ -29,7 +29,7 @@ public class CourseDAO extends DAO<Course>{
     }
 
     @Override
-    public boolean modify(Course obj, Course obj2) {
+    public boolean modify(Course obj) {
         return false;
     }
 

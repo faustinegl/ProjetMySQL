@@ -41,10 +41,16 @@ public class UserDAO extends DAO<User> {
     }
 
     @Override
-    public boolean modify(User user,User user2) {
-        try (PreparedStatement preparedStatement = connect.prepareStatement("UPDATE User SET FIRST_NAME=? WHERE FIRST_NAME=?");){
-            preparedStatement.setString(2,user.getFirstName());
-            preparedStatement.setString(1,user2.getFirstName());
+    public boolean modify(User user) {
+        try (PreparedStatement preparedStatement = connect.prepareStatement("UPDATE User SET EMAIL=?,PASSWORD=?,FIRST_NAME=?," +
+                "LAST_NAME=?,PERMISSION=? WHERE ID=?");){
+            preparedStatement.setString(1,user.getEmail());
+            preparedStatement.setString(2,user.getPassword());
+            preparedStatement.setString(3,user.getFirstName());
+            preparedStatement.setString(4,user.getLastName());
+            preparedStatement.setString(5,user.getPermission());
+            preparedStatement.setInt(6,user.getId());
+
 
 
             preparedStatement.executeUpdate();

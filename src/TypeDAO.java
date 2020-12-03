@@ -29,7 +29,7 @@ public class TypeDAO extends DAO<Type>{
     }
 
     @Override
-    public boolean modify(Type obj,Type obj2) {
+    public boolean modify(Type obj) {
         return false;
     }
 

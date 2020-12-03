@@ -39,10 +39,11 @@ public class StudentDAO extends DAO<Student> {
         return false;
     }
 
-    public boolean modify(Student student,Student student2) {
-        try (PreparedStatement preparedStatement = connect.prepareStatement("UPDATE student SET ID=? WHERE ID=?");){
-            preparedStatement.setString(1,student.getFirstName());
-            preparedStatement.setString(2,student2.getFirstName());
+    public boolean modify(Student student) {
+        try (PreparedStatement preparedStatement = connect.prepareStatement("UPDATE student SET NUMBER=?,ID_PROMOTION=? WHERE ID_USER=?");){
+            preparedStatement.setInt(1,student.getNumber());
+            preparedStatement.setInt(2,student.getIdPromo());
+            preparedStatement.setInt(3,student.getId());
 
 
             preparedStatement.executeUpdate();

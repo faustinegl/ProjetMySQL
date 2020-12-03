@@ -37,7 +37,7 @@ public class SiteDAO extends DAO<Site>{
     }
 
     @Override
-    public boolean modify(Site obj, Site obj2) {
+    public boolean modify(Site obj) {
         return false;
     }
 
