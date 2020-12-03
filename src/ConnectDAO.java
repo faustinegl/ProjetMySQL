@@ -121,6 +121,7 @@ public class ConnectDAO {
             }
 
 
+/*
 
 
 
@@ -144,10 +145,12 @@ public class ConnectDAO {
 
             }
             System.out.println();
-            /*for (Room room : rooms) {
+            */
+/*for (Room room : rooms) {
                 System.out.println("Capacite " + room.getCapacity() + "  - ");
 
-            }*/
+            }*//*
+
             System.out.println("LISTE SALLES :");
             for (Room room : rooms) {
 
@@ -161,6 +164,7 @@ public class ConnectDAO {
                         session.getStartTime()+" -"+ session.getEndTime()+ " -"+ session.getCourse().getName()+" -"+
                         session.getState()+ " -"+ session.getType().getName()+ " -"+ session.getIdRoom()+ " -"+ session.getIdPromotion());
             }
+*/
 
 
 
