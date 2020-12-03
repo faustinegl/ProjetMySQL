@@ -55,7 +55,7 @@ public class StudentDAO extends DAO<Student> {
         return false;
     }
 
-    public Student find(int id, User user, List<Promotion>promotions,List<Course>courses, List <Site> sites,List<Type>types) {
+    public Student find(int id, User user, List<Promotion>promotions,List<Course>courses, List <Site> sites,List<Type>types,List<RoomSession>roomSessions,List<PromotionSession>promotionSessions) {
 
         Student student=new Student();
         Promotion promotion=new Promotion();

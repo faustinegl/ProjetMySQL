@@ -34,7 +34,7 @@ public class CourseDAO extends DAO<Course>{
     }
 
     @Override
-    public Course find(int id, User user, List<Promotion>promotions,List<Course>courses, List <Site> sites,List<Type>types) {
+    public Course find(int id, User user, List<Promotion>promotions,List<Course>courses, List <Site> sites,List<Type>types,List<RoomSession>roomSessions,List<PromotionSession>promotionSessions) {
 
         Course course =new Course();
 

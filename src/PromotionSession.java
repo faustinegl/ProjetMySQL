@@ -1,19 +1,26 @@
-import java.time.LocalDateTime;
-import java.util.List;
+public class PromotionSession {
+     private int id ;
+     private int idPromotion;
 
-public class PromotionSession extends Session{
-     private List<Promotion> groupsSession;
+     public PromotionSession(int id, int idPromotion) {
+          this.id = id;
+          this.idPromotion = idPromotion;
+     }
+     public PromotionSession() {}
 
-     public List<Promotion> getGroupsSession() {
-          return groupsSession;
+     public int getId() {
+          return id;
      }
 
-     public void setGroupsSession(List<Promotion> groupsSession) {
-          this.groupsSession = groupsSession;
+     public void setId(int id) {
+          this.id = id;
      }
 
-     public PromotionSession(int id, int week, int date, int startTime, int endTime, Course course, String state, List<Promotion> groupsSession,Type type) {
-          super(id, week, date, startTime, endTime, course, state,type);
-          this.groupsSession = groupsSession;
+     public int getIdPromotion() {
+          return idPromotion;
+     }
+
+     public void setIdPromotion(int idPromotion) {
+          this.idPromotion = idPromotion;
      }
 }

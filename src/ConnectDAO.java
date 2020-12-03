@@ -16,6 +16,8 @@ public class ConnectDAO {
     List<Site> sites=new ArrayList<>();
     List<Session> sessions=new ArrayList<>();
     List<Type>types=new ArrayList<>();
+    List<RoomSession>roomSessions=new ArrayList<>();
+    List<PromotionSession>promotionSessions=new ArrayList<>();
 
     public List<Promotion> getPromotions() {
         return promotions;
@@ -41,50 +43,63 @@ public class ConnectDAO {
             DAO<Site> siteDAO=new SiteDAO(connect);
             DAO<Session> sessionDAO=new SessionDAO(connect);
             DAO<Type> typeDAO=new TypeDAO(connect);
+            DAO<RoomSession> roomSessionDAO=new RoomSessionDAO(connect);
+            DAO<PromotionSession> promotionSessionDAO=new PromotionSessionDAO(connect);
 
 
             for (int i = 0; i < 10000; i++) {
                 User user = new User();
-                user = userDao.find(i, user, promotions,courses,sites,types);
+                user = userDao.find(i, user, promotions,courses,sites,types,roomSessions,promotionSessions);
 
 
                 if (user.getId() != 0) {
                     users.add(user);
                 }
 
-                Room room = roomDAO.find(i, user, promotions,courses,sites,types);
+                Room room = roomDAO.find(i, user, promotions,courses,sites,types,roomSessions,promotionSessions);
                 if (room.getId() != 0) {
                     rooms.add(room);
                 }
-                Promotion promotion = promotionDAO.find(i, user, promotions,courses,sites,types);
+                Promotion promotion = promotionDAO.find(i, user, promotions,courses,sites,types,roomSessions,promotionSessions);
                 if (promotion.getId() != 0) {
                     promotions.add(promotion);
                 }
-                Course course= courseDAO.find(i, user, promotions,courses,sites,types);
+
+                Course course= courseDAO.find(i, user, promotions,courses,sites,types,roomSessions,promotionSessions);
                 if (course.getId() != 0) {
                     courses.add(course);
                 }
-                Site site= siteDAO.find(i, user, promotions,courses,sites,types);
+                Site site= siteDAO.find(i, user, promotions,courses,sites,types,roomSessions,promotionSessions);
                 if (site.getId() != 0) {
                     sites.add(site);
                 }
-                Type type= typeDAO.find(i, user, promotions,courses,sites,types);
+                Type type= typeDAO.find(i, user, promotions,courses,sites,types,roomSessions,promotionSessions);
                 if (type.getId() != 0) {
                     types.add(type);
                 }
-                Session session = sessionDAO.find(i, user, promotions,courses,sites,types);
+                RoomSession roomSession = roomSessionDAO.find(i, user, promotions,courses,sites,types,roomSessions,promotionSessions);
+                if (roomSession.getId() != 0) {
+                    roomSessions.add(roomSession);
+                }
+                PromotionSession promotionSession = promotionSessionDAO.find(i, user, promotions,courses,sites,types,roomSessions,promotionSessions);
+                if (promotionSession.getId() != 0) {
+                    promotionSessions.add(promotionSession);
+                }
+                Session session = sessionDAO.find(i, user, promotions,courses,sites,types,roomSessions,promotionSessions);
 
                 if(session.getId()!=0)
                 {
                     sessions.add(session);
                 }
 
+
             }
 
             for (int i = 0; i < 10000; i++) {
                 for (User user : users) {
                     if (i == user.getId()) {
-                        Student student = studentDao.find(i, user, promotions,courses,sites,types);
+                        Session session=new Session();
+                        Student student = studentDao.find(i, user, promotions,courses,sites,types,roomSessions,promotionSessions);
                         if (student.getId() != 0) {
                             students.add(student);
                         }
@@ -95,7 +110,8 @@ public class ConnectDAO {
             for (int i = 0; i < 10000; i++) {
                 for (User user : users) {
                     if (i == user.getId()) {
-                        Teacher teacher = teacherDAO.find(i, user, promotions,courses,sites,types);
+                        Session session=new Session();
+                        Teacher teacher = teacherDAO.find(i, user, promotions,courses,sites,types,roomSessions,promotionSessions);
                         if (teacher.getId() != 0) {
 
                             teachers.add(teacher);
@@ -143,7 +159,7 @@ public class ConnectDAO {
 
                 System.out.println(session.getId()+ " -"+session.getWeek() + "  - "+ session.getDate()+" -"+
                         session.getStartTime()+" -"+ session.getEndTime()+ " -"+ session.getCourse().getName()+" -"+
-                        session.getState()+ " -"+ session.getType().getName());
+                        session.getState()+ " -"+ session.getType().getName()+ " -"+ session.getIdRoom()+ " -"+ session.getIdPromotion());
             }
 
 

@@ -62,7 +62,7 @@ public class UserDAO extends DAO<User> {
         return false;
     }
 
-    public User find(int id, User users, List<Promotion>promotions,List<Course>courses, List <Site> sites,List<Type>types) {
+    public User find(int id, User users, List<Promotion>promotions,List<Course>courses, List <Site> sites,List<Type>types,List<RoomSession>roomSessions,List<PromotionSession>promotionSessions) {
         User user=new User();
 
         try {

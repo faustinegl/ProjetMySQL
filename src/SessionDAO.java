@@ -49,11 +49,13 @@ public class SessionDAO extends DAO<Session> {
         return false;
     }
 
-    public Session find(int id, User user, List<Promotion>promotions,List<Course>courses, List <Site> sites,List<Type>types) {
+    public Session find(int id, User user, List<Promotion>promotions,List<Course>courses, List <Site> sites,List<Type>types,List<RoomSession>roomSessions,List<PromotionSession>promotionSessions) {
 
         Session session=new Session();
         Course course = new Course();
         Type type=new Type();
+        RoomSession roomSession=new RoomSession();
+        PromotionSession promotionSession=new PromotionSession();
 
         try {
             ResultSet result = this.connect.createStatement(
@@ -67,6 +69,18 @@ public class SessionDAO extends DAO<Session> {
                         course = course1;
                     }
                 }
+                for (RoomSession roomSession1 : roomSessions) {
+                    if(id==roomSession1.getId())
+                    {
+                        roomSession=roomSession1;
+                    }
+                }
+                for (PromotionSession promotionSession1 : promotionSessions) {
+                    if(id==promotionSession1.getId())
+                    {
+                        promotionSession=promotionSession1;
+                    }
+                }
                 for(Type type1: types) {
                     if (type1.getId() == result.getInt("ID_TYPE")) {
                         type = type1;
@@ -77,7 +91,7 @@ public class SessionDAO extends DAO<Session> {
                         result.getInt("DATE"),
                         result.getInt("START_TIME"),
                         result.getInt("END_TIME"),
-                        course, result.getString("STATE"), type);
+                        course, result.getString("STATE"), type,roomSession,promotionSession);
             }
 
 

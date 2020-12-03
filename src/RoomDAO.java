@@ -41,7 +41,7 @@ public class RoomDAO extends DAO<Room> {
         return false;
     }
 
-    public Room find(int id, User user, List<Promotion>promotions,List<Course>courses, List<Site> sites,List<Type>types) {
+    public Room find(int id, User user, List<Promotion>promotions,List<Course>courses, List<Site> sites,List<Type>types,List<RoomSession>roomSessions,List<PromotionSession>promotionSessions) {
 
 
         Room room = new Room();

@@ -42,7 +42,7 @@ public class TeacherDAO extends DAO<Teacher> {
         return false;
     }
 
-    public Teacher find(int id, User user, List<Promotion>promotions,List<Course>courses, List <Site> sites,List<Type>types) {
+    public Teacher find(int id, User user, List<Promotion>promotions,List<Course>courses, List <Site> sites,List<Type>types,List<RoomSession>roomSessions,List<PromotionSession>promotionSessions) {
         Set<Integer>idCourses = new HashSet<>();
 
         Teacher teacher = new Teacher();

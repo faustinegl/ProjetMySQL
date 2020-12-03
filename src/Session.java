@@ -11,8 +11,10 @@ public class Session {
     private Course course ;
     private String state ;
     private Type type;
+    private RoomSession room;
+    private PromotionSession promotion;
 
-    public Session(int id, int week, int date, int startTime, int endTime, Course course, String state, Type type) {
+    public Session(int id, int week, int date, int startTime, int endTime, Course course, String state, Type type, RoomSession room, PromotionSession promotion) {
         this.id = id;
         this.week = week;
         this.date = date;
@@ -21,6 +23,8 @@ public class Session {
         this.course = course;
         this.state = state;
         this.type=type;
+        this.room=room;
+        this.promotion=promotion;
     }
     Session(){}
 
@@ -31,6 +35,11 @@ public class Session {
     public int getIdCourse(){
         return course.getId();
     }
+
+    public int getIdRoom(){return room.getIdRoom();}
+
+    public int getIdPromotion(){return promotion.getIdPromotion();}
+
     public int getIdType(){
         return type.getId();
     }
@@ -90,4 +99,20 @@ public class Session {
     public Type getType(){ return type; }
 
     public void setType(Type type){this.type=type;}
+
+    public RoomSession getRoom() {
+        return room;
+    }
+
+    public void setRoom(RoomSession room) {
+        this.room = room;
+    }
+
+    public PromotionSession getPromotion() {
+        return promotion;
+    }
+
+    public void setPromotion(PromotionSession promotion) {
+        this.promotion = promotion;
+    }
 }

@@ -34,7 +34,7 @@ public class TypeDAO extends DAO<Type>{
     }
 
     @Override
-    public Type find(int id, User user, List<Promotion>promotions,List<Course>courses, List <Site> sites,List<Type>types) {
+    public Type find(int id, User user, List<Promotion>promotions,List<Course>courses, List <Site> sites,List<Type>types,List<RoomSession>roomSessions,List<PromotionSession>promotionSessions) {
 
         Type type=new Type();
 

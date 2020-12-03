@@ -7,7 +7,7 @@ public class Page extends JFrame implements ActionListener {
 
     HomePage homePage = new HomePage();
     Menu menu = new Menu();
-    AddStudent addStudent= new AddStudent();
+/*    AddStudent addStudent= new AddStudent();
     AddTeacher addTeacher=new AddTeacher();
     AddCourse addCourse=new AddCourse();
     AddPromotion addPromotion=new AddPromotion();
@@ -18,7 +18,7 @@ public class Page extends JFrame implements ActionListener {
 
     DeleteStudent deleteStudent=new DeleteStudent();
     DeleteTeacher deleteTeacher=new DeleteTeacher();
-    DeleteSession deleteSession=new DeleteSession();
+    DeleteSession deleteSession=new DeleteSession();*/
 
     ModifyStudent modifyStudent=new ModifyStudent();
 

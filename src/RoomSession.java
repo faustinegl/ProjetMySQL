@@ -1,20 +1,26 @@
-import java.time.LocalDateTime;
-import java.util.List;
+public class RoomSession {
+    private int id ;
+    private int idRoom;
 
-public class RoomSession extends Session{
+    public RoomSession(int id, int idRoom) {
+        this.id = id;
+        this.idRoom = idRoom;
+    }
+    public RoomSession() {}
 
-    private List<Room> rooms ;
-
-    public List<Room> getRooms() {
-        return rooms;
+    public int getId() {
+        return id;
     }
 
-    public void setRooms(List<Room> rooms) {
-        this.rooms = rooms;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public RoomSession(int id, int week, int date, int startTime, int endTime, Course course, String state, List<Room> rooms,Type type) {
-        super(id, week, date, startTime, endTime, course, state,type);
-        this.rooms = rooms;
+    public int getIdRoom() {
+        return idRoom;
+    }
+
+    public void setIdRoom(int idRoom) {
+        this.idRoom = idRoom;
     }
 }

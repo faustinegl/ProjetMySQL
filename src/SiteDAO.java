@@ -42,7 +42,7 @@ public class SiteDAO extends DAO<Site>{
     }
 
     @Override
-    public Site find(int id, User user, List<Promotion> promotions,List<Course>courses, List <Site> sites,List<Type>types) {
+    public Site find(int id, User user, List<Promotion> promotions,List<Course>courses, List <Site> sites,List<Type>types,List<RoomSession>roomSessions,List<PromotionSession>promotionSessions) {
         Site site=new Site();
 
         try {
