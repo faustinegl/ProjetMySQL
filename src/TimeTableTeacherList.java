@@ -8,6 +8,7 @@ public class TimeTableTeacherList extends JPanel implements ActionListener {
     ConnectDAO connectDAO = new ConnectDAO();
     ResearchTeacher researchTeacher = new ResearchTeacher();
 
+
     TimeTableTeacherList()
     {
 
@@ -20,6 +21,7 @@ public class TimeTableTeacherList extends JPanel implements ActionListener {
 
         // Column Names
         String[] columns = {"Matiere", "Date", "Heure de debut", "Heure de fin", "Salle", "Site", "Etat","Promotion"};
+        JTable timeTableTeacherList = new JTable(lines, columns);
         JTable timeTableTeacher = new JTable(lines, columns);
         String nameRoom;
         String namePromotion;
@@ -77,8 +79,8 @@ public class TimeTableTeacherList extends JPanel implements ActionListener {
 
             }
         }
-        JScrollPane sp = new JScrollPane(timeTableTeacher);
-        sp.setBounds(30, 200, 1200, 415);
+        JScrollPane sp = new JScrollPane(timeTableTeacherList);
+        sp.setBounds(30, 300, 1200, 315);
         this.timePane = sp;
     }
 

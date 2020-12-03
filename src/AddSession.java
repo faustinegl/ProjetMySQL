@@ -23,6 +23,16 @@ public class AddSession extends JPanel implements ActionListener {
     JTextField state = new JTextField();
     JTextField type = new JTextField();
 
+    JButton buttonAdd= new JButton("Ajout");
+    JButton buttonDelete= new JButton("Suppression");
+    JButton buttonModify= new JButton("Cours");
+    JButton students= new JButton("Etudiants");
+    JButton promotions= new JButton("Promotion");
+    JButton teachers= new JButton("Professeurs");
+    JButton rooms= new JButton("Salles");
+    JButton graphique = new JButton("CapaciteSalle");
+    JButton graphique2 = new JButton("StatistiquesCours ");
+
 
     public AddSession()
     {
@@ -99,6 +109,37 @@ public class AddSession extends JPanel implements ActionListener {
         state.addActionListener(this);
         type.addActionListener(this);
 
+        students.setBounds(0,10,120,30);
+        teachers.setBounds(120,10,120,30);
+        promotions.setBounds(240,10,120,30);
+        rooms.setBounds(360,10,120,30);
+        buttonAdd.setBounds(480,10,120,30);
+        buttonDelete.setBounds(600,10,120,30);
+        buttonModify.setBounds(720,10,120,30);
+        graphique.setBounds(840,10,120,30);
+        graphique2.setBounds(960,10,120,30);
+
+        buttonDelete.setFont(police);
+        buttonModify.setFont(police);
+        students.setFont(police);
+        promotions.setFont(police);
+        teachers.setFont(police);
+        rooms.setFont(police);
+        buttonAdd.setFont(police);
+        graphique2.setFont(police);
+        graphique.setFont(police);
+
+
+        this.add(buttonDelete);
+        this.add(buttonModify);
+        this.add(students);
+        this.add(promotions);
+        this.add(teachers);
+        this.add(rooms);
+        this.add(buttonAdd);
+        this.setBackground(Color.white);
+
+
 
         this.add(question);
         this.add(idtitle);
@@ -118,6 +159,8 @@ public class AddSession extends JPanel implements ActionListener {
         this.add(course);
         this.add(state);
         this.add(type);
+        this.add(graphique);
+        this.add(graphique2);
         this.setBackground(Color.white);
 
         this.add(labelFond);
@@ -130,8 +173,8 @@ public class AddSession extends JPanel implements ActionListener {
         try {
             //Connect to Database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:8889/Projet",
-                    "root","root");
+            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/projet?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+                    "root","");
             Statement query = ((Connection) connect).createStatement();
 
             Session session = new Session();

@@ -7,13 +7,19 @@ import java.util.List;
 
 public class Menu extends JPanel implements ActionListener {
 
+
+
     TimeTableStudent timeTableStudent = new TimeTableStudent();
-    TimeTableTeacher timeTableTeacher = new TimeTableTeacher();
+    //TimeTableTeacher timeTableTeacher = new TimeTableTeacher();
     ConnectDAO connectDAO = new ConnectDAO();
     JScrollPane timePane;
 
+    JButton deconnexion = new JButton("DECONNEXION");
+
     JTextField weekChoice= new JTextField();
     JButton choiceValidated = new JButton("Valider");
+
+
 
     public Menu()
     {
@@ -36,16 +42,21 @@ public class Menu extends JPanel implements ActionListener {
         message.setFont(police);
         week.setFont(police);
 
+        deconnexion.setFont(police);
+
         message.setBounds((350),50,700,20);
         week.setBounds(400,100,50,20);
         weekChoice.setBounds(450,100,100,20);
         choiceValidated.setBounds(600,100,100,20);
+
+        deconnexion.setBounds(900,20,200,20);
 
         this.add(title);
         this.add(week);
         this.add(weekChoice);
         this.add(message);
         this.add(choiceValidated);
+        this.add(deconnexion);
         this.setBackground(Color.white);
 
 

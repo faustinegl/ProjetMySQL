@@ -12,6 +12,8 @@ public class HomePage extends JPanel implements ActionListener {
     JPasswordField textPassWord= new JPasswordField();
     JLabel errorMessage = new JLabel("Votre email ou mot de passe est incorrect !");
 
+
+
     public HomePage()
     {
 
@@ -45,7 +47,9 @@ public class HomePage extends JPanel implements ActionListener {
         textEmail.setFont(police);
         textEmail.addActionListener(this);
 
+
         textPassWord.addActionListener(this);
+
 
         textPassWord.setBounds(320,150,200,20);
         textPassWord.setFont(police);

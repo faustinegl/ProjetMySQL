@@ -1,11 +1,18 @@
+/*
 import javax.swing.*;
 
 public class TimeTableTeacher extends TimeTable {
-    String[][] lines;
+
+    ConnectDAO connectDAO = new ConnectDAO();
+    Menu menu = new Menu();
+
+
+
 
     TimeTableTeacher() {
 
         super();
+        connectDAO.createConnection();
 
         String[][]  lines= {
 
@@ -22,8 +29,50 @@ public class TimeTableTeacher extends TimeTable {
         JTable timeTableTeacher = new JTable(lines, columns);
         timeTableTeacher.setRowHeight(65);
 
+
+
+        for (Teacher element : connectDAO.teachers )
+        {
+           if (element.getLastName().equals("mauti"))
+           {
+               for (Course course : element.getListCourse())
+
+               {
+                   for (Session session : connectDAO.sessions)
+
+                       if (session.getCourse().getId()==course.getId())
+                       {
+
+                           if (menu.weekChoice.getText().equals("1"))
+                           {
+                               if ((session.getDate()-20200104)<6)
+                               {
+                                   lines[(session.getDate()-20200104)][(session.getStartTime()- 7)]= course.getName()
+                                           + session.getState();
+                               }
+                           }
+
+                           if (menu.weekChoice.getText().equals("2"))
+                           {
+                               if ((session.getDate()-20200111)<6)
+                               {
+                                   lines[(session.getDate()-20200111)][(session.getStartTime()- 7)]= course.getName();
+                               }
+                           }
+
+                       }
+
+               }
+
+
+
+           }
+        }
+
+
+
         JScrollPane sp = new JScrollPane(timeTableTeacher);
-        sp.setBounds(30, 200, 1200, 415);
+        sp.setBounds(30, 300, 1200, 315);
         this.timePane = sp;
     }
 
@@ -32,11 +81,14 @@ public class TimeTableTeacher extends TimeTable {
         return timePane;
     }
 
-   /* @Override
+   */
+/* @Override
     public void setValueAt(String value, int row, int col) {
         lines[row][col] = value;
 
-    }*/
+    }*//*
+
 }
 
 
+*/

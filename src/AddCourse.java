@@ -17,6 +17,15 @@ public class AddCourse extends JPanel implements ActionListener {
     JTextField id3 = new JTextField();
     JTextField name3 = new JTextField();
 
+    JButton buttonAdd= new JButton("Ajout");
+    JButton buttonDelete= new JButton("Suppression");
+    JButton buttonModify= new JButton("Modification");
+    JButton students= new JButton("Etudiants");
+    JButton promotions= new JButton("Promotion");
+    JButton teachers= new JButton("Professeurs");
+    JButton rooms= new JButton("Salles");
+    JButton graphique = new JButton("CapaciteSalle");
+    JButton graphique2 = new JButton("StatistiquesCours ");
 
 
     public AddCourse() {
@@ -34,6 +43,8 @@ public class AddCourse extends JPanel implements ActionListener {
         JLabel question = new JLabel("Renseignez les informations suivantes");
         JLabel idtitle = new JLabel("ID :");
         JLabel nametitle = new JLabel("NOM DU COURS:");
+
+
 
 
 
@@ -57,6 +68,41 @@ public class AddCourse extends JPanel implements ActionListener {
         id3.addActionListener(this);
         name3.addActionListener(this);
 
+        students.setBounds(0,10,120,30);
+        teachers.setBounds(120,10,120,30);
+        promotions.setBounds(240,10,120,30);
+        rooms.setBounds(360,10,120,30);
+        buttonAdd.setBounds(480,10,120,30);
+        buttonDelete.setBounds(600,10,120,30);
+        buttonModify.setBounds(720,10,120,30);
+        graphique.setBounds(840,10,120,30);
+        graphique2.setBounds(960,10,120,30);
+
+        buttonDelete.setFont(police);
+        buttonModify.setFont(police);
+        students.setFont(police);
+        promotions.setFont(police);
+        teachers.setFont(police);
+        rooms.setFont(police);
+        buttonAdd.setFont(police);
+        graphique2.setFont(police);
+        graphique.setFont(police);
+
+
+        this.add(buttonDelete);
+        this.add(buttonModify);
+        this.add(students);
+        this.add(promotions);
+        this.add(teachers);
+        this.add(rooms);
+        this.add(buttonAdd);
+        this.add(graphique);
+        this.add(graphique2);
+
+
+        this.setBackground(Color.white);
+        this.add(labelFond);
+
 
         this.add(question);
         this.add(idtitle);
@@ -76,7 +122,7 @@ public class AddCourse extends JPanel implements ActionListener {
         try {
             //Connect to Database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/projet?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/projet?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
                     "root","");
             Statement query = ((Connection) connect).createStatement();
 
