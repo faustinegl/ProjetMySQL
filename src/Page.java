@@ -20,6 +20,8 @@ public class Page extends JFrame implements ActionListener {
     DeleteTeacher deleteTeacher=new DeleteTeacher();
     DeleteSession deleteSession=new DeleteSession();
 
+    ModifyStudent modifyStudent=new ModifyStudent();
+
 
     ConnectDAO connectDAO = new ConnectDAO();
     Add add= new Add();
@@ -34,7 +36,7 @@ public class Page extends JFrame implements ActionListener {
         this.setSize(1250, 900);
 //        this.setDefaultLookAndFeelDecorated(true);
         this.setLayout(null);
-        this.add(deleteSession);
+        this.add(modifyStudent);
         this.setVisible(true);
         homePage.validated.addActionListener(this);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

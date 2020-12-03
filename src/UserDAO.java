@@ -11,7 +11,7 @@ public class UserDAO extends DAO<User> {
 
     @Override
     public boolean update(User user) {
-        try (PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO User (ID,EMAIL,PASSWORD,LAST_NAME,FIRST_NAME,PERMISSION) VALUES (?, ?, ?,?, ?, ?)")) {
+        try (PreparedStatement preparedStatement = connect.prepareStatement("INSERT INTO User (ID,EMAIL,PASSWORD,FIRST_NAME,LAST_NAME,PERMISSION) VALUES (?, ?, ?,?, ?, ?)")) {
             // On ne set pas l'id, la base s'en occupe toute seule (autoincrement)
             preparedStatement.setInt(1, user.getId());
             preparedStatement.setString(2, user.getEmail());
@@ -41,7 +41,18 @@ public class UserDAO extends DAO<User> {
     }
 
     @Override
-    public boolean create(User obj) {
+    public boolean modify(User user,User user2) {
+        try (PreparedStatement preparedStatement = connect.prepareStatement("UPDATE User SET FIRST_NAME=? WHERE FIRST_NAME=?");){
+            preparedStatement.setString(2,user.getFirstName());
+            preparedStatement.setString(1,user2.getFirstName());
+
+
+            preparedStatement.executeUpdate();
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return false;
     }
 

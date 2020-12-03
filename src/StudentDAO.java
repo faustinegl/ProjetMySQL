@@ -39,7 +39,18 @@ public class StudentDAO extends DAO<Student> {
         return false;
     }
 
-    public boolean create(Student obj) {
+    public boolean modify(Student student,Student student2) {
+        try (PreparedStatement preparedStatement = connect.prepareStatement("UPDATE student SET ID=? WHERE ID=?");){
+            preparedStatement.setString(1,student.getFirstName());
+            preparedStatement.setString(2,student2.getFirstName());
+
+
+            preparedStatement.executeUpdate();
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return false;
     }
 

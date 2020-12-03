@@ -29,7 +29,7 @@ public class PromotionDAO extends DAO<Promotion>{
     }
 
     @Override
-    public boolean create(Promotion obj) {
+    public boolean modify(Promotion obj,Promotion obj2) {
         return false;
     }
 

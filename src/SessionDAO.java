@@ -45,7 +45,7 @@ public class SessionDAO extends DAO<Session> {
         return false;
     }
 
-    public boolean create(Session obj) {
+    public boolean modify(Session obj,Session obj2) {
         return false;
     }
 

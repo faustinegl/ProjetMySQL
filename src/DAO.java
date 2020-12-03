@@ -29,7 +29,7 @@ public abstract class DAO<T> {
      * @param obj
      * @return boolean
      */
-    public abstract boolean create(T obj);
+    public abstract boolean modify(T obj,T obj2);
 
     /**
      * Méthode de recherche des informations
