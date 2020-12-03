@@ -29,8 +29,8 @@ public class UserDAO extends DAO<User> {
     @Override
     public boolean delete(User user) {
 
-        try (PreparedStatement preparedStatement = connect.prepareStatement("DELETE FROM User WHERE ID=?");){
-            preparedStatement.setInt(1,user.getId());
+        try (PreparedStatement preparedStatement = connect.prepareStatement("DELETE FROM User WHERE ID=?");) {
+            preparedStatement.setInt(1, user.getId());
             preparedStatement.executeUpdate();
 
 
@@ -43,14 +43,13 @@ public class UserDAO extends DAO<User> {
     @Override
     public boolean modify(User user) {
         try (PreparedStatement preparedStatement = connect.prepareStatement("UPDATE User SET EMAIL=?,PASSWORD=?,FIRST_NAME=?," +
-                "LAST_NAME=?,PERMISSION=? WHERE ID=?");){
-            preparedStatement.setString(1,user.getEmail());
-            preparedStatement.setString(2,user.getPassword());
-            preparedStatement.setString(3,user.getFirstName());
-            preparedStatement.setString(4,user.getLastName());
-            preparedStatement.setString(5,user.getPermission());
-            preparedStatement.setInt(6,user.getId());
-
+                "LAST_NAME=?,PERMISSION=? WHERE ID=?");) {
+            preparedStatement.setString(1, user.getEmail());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getFirstName());
+            preparedStatement.setString(4, user.getLastName());
+            preparedStatement.setString(5, user.getPermission());
+            preparedStatement.setInt(6, user.getId());
 
 
             preparedStatement.executeUpdate();
@@ -62,14 +61,14 @@ public class UserDAO extends DAO<User> {
         return false;
     }
 
-    public User find(int id, User users, List<Promotion>promotions,List<Course>courses, List <Site> sites,List<Type>types,List<RoomSession>roomSessions,List<PromotionSession>promotionSessions) {
-        User user=new User();
+    public User find(int id, User users, List<Promotion> promotions, List<Course> courses, List<Site> sites, List<Type> types, List<RoomSession> roomSessions, List<PromotionSession> promotionSessions) {
+        User user = new User();
 
         try {
             ResultSet result = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM User WHERE ID = " + id);
-            if(result.first())
+            if (result.first())
                 user = new User(id, result.getString("EMAIL"),
                         result.getString("PASSWORD"),
                         result.getString("LAST_NAME"),

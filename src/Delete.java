@@ -9,25 +9,25 @@ public class Delete extends JPanel implements ActionListener {
     JCheckBox ssession = new JCheckBox("SESSION");
     JCheckBox steacher = new JCheckBox("PROFESSEUR");
 
-    JButton buttonAdd= new JButton("Ajout");
-    JButton buttonDelete= new JButton("Suppression");
-    JButton buttonModify= new JButton("Cours");
-    JButton students= new JButton("Etudiants");
-    JButton promotions= new JButton("Promotion");
-    JButton teachers= new JButton("Professeurs");
-    JButton rooms= new JButton("Salles");
+    JButton buttonAdd = new JButton("Ajout");
+    JButton buttonDelete = new JButton("Suppression");
+    JButton buttonModify = new JButton("Cours");
+    JButton students = new JButton("Etudiants");
+    JButton promotions = new JButton("Promotion");
+    JButton teachers = new JButton("Professeurs");
+    JButton rooms = new JButton("Salles");
     JButton graphique = new JButton("CapaciteSalle");
     JButton graphique2 = new JButton("StatistiquesCours ");
 
-    Delete(){
-        this.setSize(1250,900);
+    Delete() {
+        this.setSize(1250, 900);
         this.setLayout(null);
 
-        Font police = new Font("Arial",Font.BOLD,10);
+        Font police = new Font("Arial", Font.BOLD, 10);
 
         JLabel labelFond = new JLabel(new ImageIcon("PHOTOS/homepage.png"));
-        labelFond.setBounds(0,0,1250,900);
-        labelFond.setSize(1460,677);
+        labelFond.setBounds(0, 0, 1250, 900);
+        labelFond.setSize(1460, 677);
 
         JLabel message = new JLabel("Suppression :");
 
@@ -37,20 +37,20 @@ public class Delete extends JPanel implements ActionListener {
         steacher.setFont(police);
 
 
-        message.setBounds(50,100,100,20);
-        sstudent.setBounds(150,100,100,20);
-        ssession.setBounds(150,150,100,20);
-        steacher.setBounds(150,200,100,20);
+        message.setBounds(50, 100, 100, 20);
+        sstudent.setBounds(150, 100, 100, 20);
+        ssession.setBounds(150, 150, 100, 20);
+        steacher.setBounds(150, 200, 100, 20);
 
-        students.setBounds(0,10,120,30);
-        teachers.setBounds(120,10,120,30);
-        promotions.setBounds(240,10,120,30);
-        rooms.setBounds(360,10,120,30);
-        buttonAdd.setBounds(480,10,120,30);
-        buttonDelete.setBounds(600,10,120,30);
-        buttonModify.setBounds(720,10,120,30);
-        graphique.setBounds(840,10,120,30);
-        graphique2.setBounds(960,10,120,30);
+        students.setBounds(0, 10, 120, 30);
+        teachers.setBounds(120, 10, 120, 30);
+        promotions.setBounds(240, 10, 120, 30);
+        rooms.setBounds(360, 10, 120, 30);
+        buttonAdd.setBounds(480, 10, 120, 30);
+        buttonDelete.setBounds(600, 10, 120, 30);
+        buttonModify.setBounds(720, 10, 120, 30);
+        graphique.setBounds(840, 10, 120, 30);
+        graphique2.setBounds(960, 10, 120, 30);
 
         buttonDelete.setFont(police);
         buttonModify.setFont(police);
@@ -89,7 +89,6 @@ public class Delete extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
 
 
     }

@@ -23,29 +23,28 @@ public class AddTeacher extends JPanel implements ActionListener {
     JTextField courses = new JTextField();
     JTextField coursesID = new JTextField();
 
-    JButton buttonAdd= new JButton("Ajout");
-    JButton buttonDelete= new JButton("Suppression");
-    JButton buttonModify= new JButton("Cours");
-    JButton students= new JButton("Etudiants");
-    JButton promotions= new JButton("Promotion");
-    JButton teachers= new JButton("Professeurs");
-    JButton rooms= new JButton("Salles");
+    JButton buttonAdd = new JButton("Ajout");
+    JButton buttonDelete = new JButton("Suppression");
+    JButton buttonModify = new JButton("Cours");
+    JButton students = new JButton("Etudiants");
+    JButton promotions = new JButton("Promotion");
+    JButton teachers = new JButton("Professeurs");
+    JButton rooms = new JButton("Salles");
     JButton graphique = new JButton("CapaciteSalle");
     JButton graphique2 = new JButton("StatistiquesCours ");
 
 
-    public AddTeacher()
-    {
+    public AddTeacher() {
 
-        this.setSize(1250,900);
+        this.setSize(1250, 900);
         this.setLayout(null);
         connectDAO.createConnection();
 
         Font police = new Font("Arial", Font.BOLD, 10);
 
         JLabel labelFond = new JLabel(new ImageIcon("PHOTOS/homepage.png"));
-        labelFond.setBounds(0,0,1250,900);
-        labelFond.setSize(1460,677);
+        labelFond.setBounds(0, 0, 1250, 900);
+        labelFond.setSize(1460, 677);
 
         JLabel question = new JLabel("Renseignez les informations suivantes");
         JLabel idtitle = new JLabel("ID :");
@@ -55,8 +54,6 @@ public class AddTeacher extends JPanel implements ActionListener {
         JLabel firstNametitle = new JLabel("PRENOM :");
         JLabel coursetitle = new JLabel("COURS :");
         JLabel courseIDtitle = new JLabel("ID DU COURS :");
-
-
 
 
         question.setFont(police);
@@ -104,15 +101,15 @@ public class AddTeacher extends JPanel implements ActionListener {
         courses.addActionListener(this);
         coursesID.addActionListener(this);
 
-        students.setBounds(0,10,120,30);
-        teachers.setBounds(120,10,120,30);
-        promotions.setBounds(240,10,120,30);
-        rooms.setBounds(360,10,120,30);
-        buttonAdd.setBounds(480,10,120,30);
-        buttonDelete.setBounds(600,10,120,30);
-        buttonModify.setBounds(720,10,120,30);
-        graphique.setBounds(840,10,120,30);
-        graphique2.setBounds(960,10,120,30);
+        students.setBounds(0, 10, 120, 30);
+        teachers.setBounds(120, 10, 120, 30);
+        promotions.setBounds(240, 10, 120, 30);
+        rooms.setBounds(360, 10, 120, 30);
+        buttonAdd.setBounds(480, 10, 120, 30);
+        buttonDelete.setBounds(600, 10, 120, 30);
+        buttonModify.setBounds(720, 10, 120, 30);
+        graphique.setBounds(840, 10, 120, 30);
+        graphique2.setBounds(960, 10, 120, 30);
 
         buttonDelete.setFont(police);
         buttonModify.setFont(police);
@@ -161,6 +158,7 @@ public class AddTeacher extends JPanel implements ActionListener {
 
 
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -168,15 +166,15 @@ public class AddTeacher extends JPanel implements ActionListener {
             //Connect to Database
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/projet?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
-                    "root","");
+                    "root", "");
             Statement query = ((Connection) connect).createStatement();
 
-            User user =new User();
-            Teacher teacher=new Teacher();
-            Course course = new Course(Integer.parseInt(coursesID.getText()),courses.getText());
+            User user = new User();
+            Teacher teacher = new Teacher();
+            Course course = new Course(Integer.parseInt(coursesID.getText()), courses.getText());
             DAO<Teacher> teacherDAO = new TeacherDAO(connect);
             DAO<User> userDao = new UserDAO(connect);
-            List<Course> listCourse=new ArrayList<>();
+            List<Course> listCourse = new ArrayList<>();
 
             DAO<Course> courseDAO = new CourseDAO(connect);
 
@@ -198,14 +196,10 @@ public class AddTeacher extends JPanel implements ActionListener {
             userDao.update(teacher);
             teacherDAO.update(teacher);
 
-        }
-
-        catch (ClassNotFoundException ex){
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE,null,ex);
-        }
-
-        catch(SQLException ex){
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE,null,ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
         }
 

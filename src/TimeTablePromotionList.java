@@ -1,3 +1,4 @@
+/*
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,7 +23,8 @@ public class TimeTablePromotionList extends JPanel implements ActionListener {
         // Column Names
         String[] columns = {"Matiere", "Date", "Heure de debut", "Heure de fin", "Salle", "Site", "Etat"};
         JTable timeTablePromotion = new JTable(lines, columns);
-       /* for (Teacher element : connectDAO.teachers)
+       */
+/* for (Teacher element : connectDAO.teachers)
         {
             if (researchPromotion.teacher.getText().equals(element.getLastName()));
             {
@@ -52,7 +54,8 @@ public class TimeTablePromotionList extends JPanel implements ActionListener {
             }
         }
 
-}*/
+}*//*
+
     JScrollPane sp = new JScrollPane(timeTablePromotion);
         sp.setBounds(30, 300, 1200, 315);
         this.timePane = sp;
@@ -69,3 +72,4 @@ public class TimeTablePromotionList extends JPanel implements ActionListener {
 
     }}
 
+*/

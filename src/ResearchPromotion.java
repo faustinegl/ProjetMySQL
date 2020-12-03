@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 public class ResearchPromotion extends JPanel implements ActionListener {
 
+    // Initialisation des attributs
+
     JTextField promotion = new JTextField();
     JTextField week2 = new JTextField();
     JButton researchValidate2 = new JButton("Valider");

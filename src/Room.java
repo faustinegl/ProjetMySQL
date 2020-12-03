@@ -1,8 +1,8 @@
 public class Room {
 
-    private int id ;
-    private String name ;
-    private int capacity ;
+    private int id;
+    private String name;
+    private int capacity;
     private Site site;
 
     public Room(int id, String name, int capacity, Site site) {
@@ -12,13 +12,14 @@ public class Room {
         this.site = site;
     }
 
-    public Room(){}
+    public Room() {
+    }
 
     public int getId() {
         return id;
     }
 
-    public int getIdSite(){
+    public int getIdSite() {
         return site.getId();
     }
 

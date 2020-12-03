@@ -1,9 +1,10 @@
 public class User {
 
-    public enum Permission {ADMIN,PEDAGOGIC_REFERENCE,TEACHER,STUDENT}
-    private int id ;
+    public enum Permission {ADMIN, PEDAGOGIC_REFERENCE, TEACHER, STUDENT}
+
+    private int id;
     private String email;
-    private String password ;
+    private String password;
     private String lastName;
     private String firstName;
     private String permission;
@@ -64,5 +65,9 @@ public class User {
         this.firstName = firstName;
         this.permission = permission;
     }
-    public User(){};
+
+    public User() {
+    }
+
+    ;
 }

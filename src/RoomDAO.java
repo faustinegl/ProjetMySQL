@@ -26,8 +26,8 @@ public class RoomDAO extends DAO<Room> {
     }
 
     public boolean delete(Room room) {
-        try (PreparedStatement preparedStatement = connect.prepareStatement("DELETE FROM room WHERE ID=?");){
-            preparedStatement.setInt(1,room.getId());
+        try (PreparedStatement preparedStatement = connect.prepareStatement("DELETE FROM room WHERE ID=?");) {
+            preparedStatement.setInt(1, room.getId());
             preparedStatement.executeUpdate();
 
 
@@ -41,11 +41,11 @@ public class RoomDAO extends DAO<Room> {
         return false;
     }
 
-    public Room find(int id, User user, List<Promotion>promotions,List<Course>courses, List<Site> sites,List<Type>types,List<RoomSession>roomSessions,List<PromotionSession>promotionSessions) {
+    public Room find(int id, User user, List<Promotion> promotions, List<Course> courses, List<Site> sites, List<Type> types, List<RoomSession> roomSessions, List<PromotionSession> promotionSessions) {
 
 
         Room room = new Room();
-        Site site= new Site();
+        Site site = new Site();
 
 
         try {
@@ -54,7 +54,7 @@ public class RoomDAO extends DAO<Room> {
                     ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM room WHERE ID = " + id);
 
 
-            if(result.first()) {
+            if (result.first()) {
                 for (Site elemSite : sites) {
                     if (elemSite.getId() == result.getInt("ID_SITE")) {
                         site = elemSite;

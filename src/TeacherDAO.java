@@ -26,8 +26,8 @@ public class TeacherDAO extends DAO<Teacher> {
 
     @Override
     public boolean delete(Teacher teacher) {
-        try (PreparedStatement preparedStatement = connect.prepareStatement("DELETE FROM teacher WHERE ID_USER=?");){
-            preparedStatement.setInt(1,teacher.getId());
+        try (PreparedStatement preparedStatement = connect.prepareStatement("DELETE FROM teacher WHERE ID_USER=?");) {
+            preparedStatement.setInt(1, teacher.getId());
             preparedStatement.executeUpdate();
 
 
@@ -42,11 +42,11 @@ public class TeacherDAO extends DAO<Teacher> {
         return false;
     }
 
-    public Teacher find(int id, User user, List<Promotion>promotions,List<Course>courses, List <Site> sites,List<Type>types,List<RoomSession>roomSessions,List<PromotionSession>promotionSessions) {
-        Set<Integer>idCourses = new HashSet<>();
+    public Teacher find(int id, User user, List<Promotion> promotions, List<Course> courses, List<Site> sites, List<Type> types, List<RoomSession> roomSessions, List<PromotionSession> promotionSessions) {
+        Set<Integer> idCourses = new HashSet<>();
 
         Teacher teacher = new Teacher();
-        List<Course>courseTeacher=new ArrayList<>();
+        List<Course> courseTeacher = new ArrayList<>();
 
         try {
             ResultSet result = this.connect.createStatement(
@@ -58,7 +58,7 @@ public class TeacherDAO extends DAO<Teacher> {
 
                 if (user.getPermission().equals("TEACHER")) {
 
-                    for(Integer idCours : idCourses) {
+                    for (Integer idCours : idCourses) {
 
                         for (Course course2 : courses) {
                             if (idCours.equals(course2.getId())) {

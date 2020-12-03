@@ -12,26 +12,24 @@ public class ConnectDAO {
     List<Teacher> teachers = new ArrayList<>();
     List<Room> rooms = new ArrayList<>();
     List<Promotion> promotions = new ArrayList<>();
-    List<Course>courses=new ArrayList<>();
-    List<Site> sites=new ArrayList<>();
-    List<Session> sessions=new ArrayList<>();
-    List<Type>types=new ArrayList<>();
-    List<RoomSession>roomSessions=new ArrayList<>();
-    List<PromotionSession>promotionSessions=new ArrayList<>();
+    List<Course> courses = new ArrayList<>();
+    List<Site> sites = new ArrayList<>();
+    List<Session> sessions = new ArrayList<>();
+    List<Type> types = new ArrayList<>();
+    List<RoomSession> roomSessions = new ArrayList<>();
+    List<PromotionSession> promotionSessions = new ArrayList<>();
 
     public List<Promotion> getPromotions() {
         return promotions;
     }
 
-    public void createConnection(){
+    public void createConnection() {
         try {
             //Connect to Database
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/projet?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
-                    "root","");
+                    "root", "");
             Statement query = ((Connection) connect).createStatement();
-
-
 
 
             DAO<Student> studentDao = new StudentDAO(connect);
@@ -39,56 +37,55 @@ public class ConnectDAO {
             DAO<Teacher> teacherDAO = new TeacherDAO(connect);
             DAO<Room> roomDAO = new RoomDAO(connect);
             DAO<Promotion> promotionDAO = new PromotionDAO(connect);
-            DAO<Course> courseDAO=new CourseDAO(connect);
-            DAO<Site> siteDAO=new SiteDAO(connect);
-            DAO<Session> sessionDAO=new SessionDAO(connect);
-            DAO<Type> typeDAO=new TypeDAO(connect);
-            DAO<RoomSession> roomSessionDAO=new RoomSessionDAO(connect);
-            DAO<PromotionSession> promotionSessionDAO=new PromotionSessionDAO(connect);
+            DAO<Course> courseDAO = new CourseDAO(connect);
+            DAO<Site> siteDAO = new SiteDAO(connect);
+            DAO<Session> sessionDAO = new SessionDAO(connect);
+            DAO<Type> typeDAO = new TypeDAO(connect);
+            DAO<RoomSession> roomSessionDAO = new RoomSessionDAO(connect);
+            DAO<PromotionSession> promotionSessionDAO = new PromotionSessionDAO(connect);
 
 
             for (int i = 0; i < 10000; i++) {
                 User user = new User();
-                user = userDao.find(i, user, promotions,courses,sites,types,roomSessions,promotionSessions);
+                user = userDao.find(i, user, promotions, courses, sites, types, roomSessions, promotionSessions);
 
 
                 if (user.getId() != 0) {
                     users.add(user);
                 }
 
-                Room room = roomDAO.find(i, user, promotions,courses,sites,types,roomSessions,promotionSessions);
+                Room room = roomDAO.find(i, user, promotions, courses, sites, types, roomSessions, promotionSessions);
                 if (room.getId() != 0) {
                     rooms.add(room);
                 }
-                Promotion promotion = promotionDAO.find(i, user, promotions,courses,sites,types,roomSessions,promotionSessions);
+                Promotion promotion = promotionDAO.find(i, user, promotions, courses, sites, types, roomSessions, promotionSessions);
                 if (promotion.getId() != 0) {
                     promotions.add(promotion);
                 }
 
-                Course course= courseDAO.find(i, user, promotions,courses,sites,types,roomSessions,promotionSessions);
+                Course course = courseDAO.find(i, user, promotions, courses, sites, types, roomSessions, promotionSessions);
                 if (course.getId() != 0) {
                     courses.add(course);
                 }
-                Site site= siteDAO.find(i, user, promotions,courses,sites,types,roomSessions,promotionSessions);
+                Site site = siteDAO.find(i, user, promotions, courses, sites, types, roomSessions, promotionSessions);
                 if (site.getId() != 0) {
                     sites.add(site);
                 }
-                Type type= typeDAO.find(i, user, promotions,courses,sites,types,roomSessions,promotionSessions);
+                Type type = typeDAO.find(i, user, promotions, courses, sites, types, roomSessions, promotionSessions);
                 if (type.getId() != 0) {
                     types.add(type);
                 }
-                RoomSession roomSession = roomSessionDAO.find(i, user, promotions,courses,sites,types,roomSessions,promotionSessions);
+                RoomSession roomSession = roomSessionDAO.find(i, user, promotions, courses, sites, types, roomSessions, promotionSessions);
                 if (roomSession.getId() != 0) {
                     roomSessions.add(roomSession);
                 }
-                PromotionSession promotionSession = promotionSessionDAO.find(i, user, promotions,courses,sites,types,roomSessions,promotionSessions);
+                PromotionSession promotionSession = promotionSessionDAO.find(i, user, promotions, courses, sites, types, roomSessions, promotionSessions);
                 if (promotionSession.getId() != 0) {
                     promotionSessions.add(promotionSession);
                 }
-                Session session = sessionDAO.find(i, user, promotions,courses,sites,types,roomSessions,promotionSessions);
+                Session session = sessionDAO.find(i, user, promotions, courses, sites, types, roomSessions, promotionSessions);
 
-                if(session.getId()!=0)
-                {
+                if (session.getId() != 0) {
                     sessions.add(session);
                 }
 
@@ -98,8 +95,8 @@ public class ConnectDAO {
             for (int i = 0; i < 10000; i++) {
                 for (User user : users) {
                     if (i == user.getId()) {
-                        Session session=new Session();
-                        Student student = studentDao.find(i, user, promotions,courses,sites,types,roomSessions,promotionSessions);
+                        Session session = new Session();
+                        Student student = studentDao.find(i, user, promotions, courses, sites, types, roomSessions, promotionSessions);
                         if (student.getId() != 0) {
                             students.add(student);
                         }
@@ -110,8 +107,8 @@ public class ConnectDAO {
             for (int i = 0; i < 10000; i++) {
                 for (User user : users) {
                     if (i == user.getId()) {
-                        Session session=new Session();
-                        Teacher teacher = teacherDAO.find(i, user, promotions,courses,sites,types,roomSessions,promotionSessions);
+                        Session session = new Session();
+                        Teacher teacher = teacherDAO.find(i, user, promotions, courses, sites, types, roomSessions, promotionSessions);
                         if (teacher.getId() != 0) {
 
                             teachers.add(teacher);
@@ -228,14 +225,10 @@ public class ConnectDAO {
 
             }*/
 
-        }
-
-        catch (ClassNotFoundException ex){
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE,null,ex);
-        }
-
-        catch(SQLException ex){
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE,null,ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
         }
     }

@@ -1,3 +1,4 @@
+/*
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -46,7 +47,7 @@ public class TimeTableTeacherList extends JPanel implements ActionListener {
                                             nameSite=site.getName();
                                             if (element.getListCourse().get(0).getId()==sessionElement.getCourse().getId())
                                             {
-                                                lines[0][1]=String.valueOf(sessionElement.getDate());
+                                                lines[0][1]= String.valueOf(sessionElement.getDate());
                                                 lines[0][2]=String.valueOf(sessionElement.getStartTime());
                                                 lines[0][3]=String.valueOf(sessionElement.getEndTime());
                                                 lines[0][4]=String.valueOf(nameRoom);
@@ -95,3 +96,4 @@ public class TimeTableTeacherList extends JPanel implements ActionListener {
 
     }
 }
+*/

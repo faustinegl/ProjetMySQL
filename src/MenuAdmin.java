@@ -19,6 +19,8 @@ public class MenuAdmin extends JPanel implements ActionListener {
 
     JButton deconnexion = new JButton("DECONNEXION");
 
+    ListUser listUser = new ListUser();
+
 
     public MenuAdmin() {
         this.setSize(1500, 1000);
@@ -67,7 +69,7 @@ public class MenuAdmin extends JPanel implements ActionListener {
         this.add(graphique);
         this.add(graphique2);
         this.setBackground(Color.white);
-        this.add(labelFond);
+        //this.add(labelFond);
 
 
     }

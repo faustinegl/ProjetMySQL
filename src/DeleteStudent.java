@@ -15,27 +15,27 @@ public class DeleteStudent extends JPanel implements ActionListener {
 
     JTextField id1 = new JTextField();
 
-    JButton buttonAdd= new JButton("Ajout");
-    JButton buttonDelete= new JButton("Suppression");
-    JButton buttonModify= new JButton("Cours");
-    JButton students= new JButton("Etudiants");
-    JButton promotions= new JButton("Promotion");
-    JButton teachers= new JButton("Professeurs");
-    JButton rooms= new JButton("Salles");
+    JButton buttonAdd = new JButton("Ajout");
+    JButton buttonDelete = new JButton("Suppression");
+    JButton buttonModify = new JButton("Cours");
+    JButton students = new JButton("Etudiants");
+    JButton promotions = new JButton("Promotion");
+    JButton teachers = new JButton("Professeurs");
+    JButton rooms = new JButton("Salles");
     JButton graphique = new JButton("CapaciteSalle");
     JButton graphique2 = new JButton("StatistiquesCours ");
 
-    public DeleteStudent(){
+    public DeleteStudent() {
         connectDAO.createConnection();
-        this.setSize(1250,900);
+        this.setSize(1250, 900);
         this.setLayout(null);
 
 
         Font police = new Font("Arial", Font.BOLD, 10);
 
         JLabel labelFond = new JLabel(new ImageIcon("PHOTOS/homepage.png"));
-        labelFond.setBounds(0,0,1250,900);
-        labelFond.setSize(1460,677);
+        labelFond.setBounds(0, 0, 1250, 900);
+        labelFond.setSize(1460, 677);
 
         JLabel question = new JLabel("Renseignez l'ID de l'eleve a supprimer");
         JLabel idtitle = new JLabel("ID :");
@@ -52,15 +52,15 @@ public class DeleteStudent extends JPanel implements ActionListener {
 
         id1.addActionListener(this);
 
-        students.setBounds(0,10,120,30);
-        teachers.setBounds(120,10,120,30);
-        promotions.setBounds(240,10,120,30);
-        rooms.setBounds(360,10,120,30);
-        buttonAdd.setBounds(480,10,120,30);
-        buttonDelete.setBounds(600,10,120,30);
-        buttonModify.setBounds(720,10,120,30);
-        graphique.setBounds(840,10,120,30);
-        graphique2.setBounds(960,10,120,30);
+        students.setBounds(0, 10, 120, 30);
+        teachers.setBounds(120, 10, 120, 30);
+        promotions.setBounds(240, 10, 120, 30);
+        rooms.setBounds(360, 10, 120, 30);
+        buttonAdd.setBounds(480, 10, 120, 30);
+        buttonDelete.setBounds(600, 10, 120, 30);
+        buttonModify.setBounds(720, 10, 120, 30);
+        graphique.setBounds(840, 10, 120, 30);
+        graphique2.setBounds(960, 10, 120, 30);
 
         buttonDelete.setFont(police);
         buttonModify.setFont(police);
@@ -101,11 +101,11 @@ public class DeleteStudent extends JPanel implements ActionListener {
             //Connect to Database
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/projet?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
-                    "root","");
+                    "root", "");
             Statement query = ((Connection) connect).createStatement();
 
-            User user =new User();
-            Student student=new Student();
+            User user = new User();
+            Student student = new Student();
             DAO<Student> studentDao = new StudentDAO(connect);
             DAO<User> userDao = new UserDAO(connect);
 
@@ -114,19 +114,12 @@ public class DeleteStudent extends JPanel implements ActionListener {
             studentDao.delete(student);
             userDao.delete(student);
 
-        }
-
-        catch (ClassNotFoundException ex){
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE,null,ex);
-        }
-
-        catch(SQLException ex){
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE,null,ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
         }
-
-
-
 
 
     }

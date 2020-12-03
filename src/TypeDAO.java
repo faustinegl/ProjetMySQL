@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class TypeDAO extends DAO<Type>{
+public class TypeDAO extends DAO<Type> {
 
     public TypeDAO(Connection conn) {
         super(conn);
@@ -34,15 +34,15 @@ public class TypeDAO extends DAO<Type>{
     }
 
     @Override
-    public Type find(int id, User user, List<Promotion>promotions,List<Course>courses, List <Site> sites,List<Type>types,List<RoomSession>roomSessions,List<PromotionSession>promotionSessions) {
+    public Type find(int id, User user, List<Promotion> promotions, List<Course> courses, List<Site> sites, List<Type> types, List<RoomSession> roomSessions, List<PromotionSession> promotionSessions) {
 
-        Type type=new Type();
+        Type type = new Type();
 
         try {
             ResultSet result = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM type_course WHERE ID = " + id);
-            if(result.first())
+            if (result.first())
                 type = new Type(id, result.getString("NAME"));
         } catch (SQLException e) {
             e.printStackTrace();

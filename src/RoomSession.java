@@ -1,12 +1,14 @@
 public class RoomSession {
-    private int id ;
+    private int id;
     private int idRoom;
 
     public RoomSession(int id, int idRoom) {
         this.id = id;
         this.idRoom = idRoom;
     }
-    public RoomSession() {}
+
+    public RoomSession() {
+    }
 
     public int getId() {
         return id;

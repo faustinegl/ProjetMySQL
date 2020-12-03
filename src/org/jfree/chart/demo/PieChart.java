@@ -68,7 +68,7 @@ import org.jfree.chart.ui.UIUtils;
 
             org.jfree.chart.demo.PieChart demo = new org.jfree.chart.demo.PieChart("Répartition des Cours");
             demo.pack();
-           UIUtils.centerFrameOnScreen(demo);
+            UIUtils.centerFrameOnScreen(demo);
             demo.setVisible(true);
 
         }

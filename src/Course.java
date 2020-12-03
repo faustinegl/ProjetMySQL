@@ -11,7 +11,9 @@ public class Course {
         this.name = name;
         //this.typeCourse = typeCourse;
     }
-    public Course(){}
+
+    public Course() {
+    }
 
     public int getId() {
         return id;
@@ -29,12 +31,12 @@ public class Course {
         this.name = name;
     }
 
-  //  public String getTypeCourse() {
-      //  return typeCourse;
+    //  public String getTypeCourse() {
+    //  return typeCourse;
     //}
 
-   // public void setTypeCourse(String typeCourse) {
-       // this.typeCourse = typeCourse;
+    // public void setTypeCourse(String typeCourse) {
+    // this.typeCourse = typeCourse;
     //}
 }
 

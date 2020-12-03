@@ -33,7 +33,7 @@ public class TimeTableTeacher extends TimeTable {
 
         for (Teacher element : connectDAO.teachers )
         {
-           if (element.getLastName().equals("mauti"))
+           if (element.getLastName().equals(homePage.textEmail.getText())
            {
                for (Course course : element.getListCourse())
 
@@ -47,8 +47,17 @@ public class TimeTableTeacher extends TimeTable {
                            {
                                if ((session.getDate()-20200104)<6)
                                {
+                                   for (Promotion promotion : connectDAO.promotions)
+                                   {
+
+                                   if (promotion.getId()==session.getIdPromo()
+                                   {
+
                                    lines[(session.getDate()-20200104)][(session.getStartTime()- 7)]= course.getName()
-                                           + session.getState();
+                                           + session.getState() + promotion.getName()  + session.getIdRoom();
+                                           }
+                                           }
+
                                }
                            }
 

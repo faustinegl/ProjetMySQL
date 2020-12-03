@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class RoomSessionDAO extends DAO<RoomSession>{
+public class RoomSessionDAO extends DAO<RoomSession> {
 
     public RoomSessionDAO(Connection conn) {
         super(conn);
@@ -34,15 +34,15 @@ public class RoomSessionDAO extends DAO<RoomSession>{
     }
 
     @Override
-    public RoomSession find(int id, User user, List<Promotion>promotions,List<Course>courses, List <Site> sites,List<Type>types,List<RoomSession>roomSessions,List<PromotionSession>promotionSessions) {
+    public RoomSession find(int id, User user, List<Promotion> promotions, List<Course> courses, List<Site> sites, List<Type> types, List<RoomSession> roomSessions, List<PromotionSession> promotionSessions) {
 
-        RoomSession roomSession=new RoomSession();
+        RoomSession roomSession = new RoomSession();
 
         try {
             ResultSet result = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM room_session WHERE ID_SESSION = " + id);
-            if(result.first())
+            if (result.first())
                 roomSession = new RoomSession(id, result.getInt("ID_ROOM"));
         } catch (SQLException e) {
             e.printStackTrace();

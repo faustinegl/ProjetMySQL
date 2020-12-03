@@ -34,8 +34,8 @@ public class SessionDAO extends DAO<Session> {
 
     public boolean delete(Session session) {
 
-        try (PreparedStatement preparedStatement = connect.prepareStatement("DELETE FROM session WHERE ID=?");){
-            preparedStatement.setInt(1,session.getId());
+        try (PreparedStatement preparedStatement = connect.prepareStatement("DELETE FROM session WHERE ID=?");) {
+            preparedStatement.setInt(1, session.getId());
             preparedStatement.executeUpdate();
 
 
@@ -48,15 +48,15 @@ public class SessionDAO extends DAO<Session> {
     public boolean modify(Session session) {
 
         try (PreparedStatement preparedStatement = connect.prepareStatement("UPDATE session SET WEEK=?,DATE=?, START_TIME=?, END_TIME=?, STATE=?, ID_COURSE=?, " +
-                "ID_TYPE=? WHERE ID=?");){
-            preparedStatement.setInt(1,session.getWeek());
-            preparedStatement.setInt(2,session.getDate());
-            preparedStatement.setInt(3,session.getStartTime());
-            preparedStatement.setInt(4,session.getEndTime());
-            preparedStatement.setString(5,session.getState());
-            preparedStatement.setInt(6,session.getIdCourse());
-            preparedStatement.setInt(7,session.getIdType());
-            preparedStatement.setInt(8,session.getId());
+                "ID_TYPE=? WHERE ID=?");) {
+            preparedStatement.setInt(1, session.getWeek());
+            preparedStatement.setInt(2, session.getDate());
+            preparedStatement.setInt(3, session.getStartTime());
+            preparedStatement.setInt(4, session.getEndTime());
+            preparedStatement.setString(5, session.getState());
+            preparedStatement.setInt(6, session.getIdCourse());
+            preparedStatement.setInt(7, session.getIdType());
+            preparedStatement.setInt(8, session.getId());
 
 
             preparedStatement.executeUpdate();
@@ -68,39 +68,36 @@ public class SessionDAO extends DAO<Session> {
         return false;
     }
 
-    public Session find(int id, User user, List<Promotion>promotions,List<Course>courses, List <Site> sites,List<Type>types,List<RoomSession>roomSessions,List<PromotionSession>promotionSessions) {
+    public Session find(int id, User user, List<Promotion> promotions, List<Course> courses, List<Site> sites, List<Type> types, List<RoomSession> roomSessions, List<PromotionSession> promotionSessions) {
 
-        Session session=new Session();
+        Session session = new Session();
         Course course = new Course();
-        Type type=new Type();
-        RoomSession roomSession=new RoomSession();
-        PromotionSession promotionSession=new PromotionSession();
+        Type type = new Type();
+        RoomSession roomSession = new RoomSession();
+        PromotionSession promotionSession = new PromotionSession();
 
         try {
             ResultSet result = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM session WHERE ID = " + id);
 
-            if(result.first())
-            {
-                for(Course course1: courses) {
+            if (result.first()) {
+                for (Course course1 : courses) {
                     if (course1.getId() == result.getInt("ID_COURSE")) {
                         course = course1;
                     }
                 }
                 for (RoomSession roomSession1 : roomSessions) {
-                    if(id==roomSession1.getId())
-                    {
-                        roomSession=roomSession1;
+                    if (id == roomSession1.getId()) {
+                        roomSession = roomSession1;
                     }
                 }
                 for (PromotionSession promotionSession1 : promotionSessions) {
-                    if(id==promotionSession1.getId())
-                    {
-                        promotionSession=promotionSession1;
+                    if (id == promotionSession1.getId()) {
+                        promotionSession = promotionSession1;
                     }
                 }
-                for(Type type1: types) {
+                for (Type type1 : types) {
                     if (type1.getId() == result.getInt("ID_TYPE")) {
                         type = type1;
                     }
@@ -110,9 +107,8 @@ public class SessionDAO extends DAO<Session> {
                         result.getInt("DATE"),
                         result.getInt("START_TIME"),
                         result.getInt("END_TIME"),
-                        course, result.getString("STATE"), type,roomSession,promotionSession);
+                        course, result.getString("STATE"), type, roomSession, promotionSession);
             }
-
 
 
         } catch (SQLException e) {

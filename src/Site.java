@@ -1,12 +1,14 @@
 public class Site {
     private int id;
-    private String name ;
+    private String name;
 
     public Site(int id, String name) {
         this.id = id;
         this.name = name;
     }
-    public Site(){}
+
+    public Site() {
+    }
 
     public int getId() {
         return id;

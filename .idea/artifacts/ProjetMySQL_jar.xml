@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact name="ProjetMySQL:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ProjetMySQL_jar</output-path>
+    <root id="root">
+      <element id="archive" name="ProjetMySQL.jar">
+        <element id="module-output" name="ProjetMySQL" />
+      </element>
+      <element id="library" level="project" name="jfreechart-1.5.1" />
+      <element id="library" level="project" name="mysql-connector-java-8.0.22" />
+    </root>
+  </artifact>
+</component>

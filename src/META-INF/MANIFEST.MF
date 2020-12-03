@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: main
+Class-Path: jfreechart-1.5.1.jar mysql-connector-java-8.0.22.jar
+

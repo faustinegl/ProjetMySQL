@@ -1,15 +1,17 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
 public class Session {
 
-    public enum State {IN_PROCESS,VALIDATES, CANCELLED}
+    public enum State {IN_PROCESS, VALIDATES, CANCELLED}
+
     private int id;
-    private int week ;
+    private int week;
     private int date;
     private int startTime;
     private int endTime;
-    private Course course ;
-    private String state ;
+    private Course course;
+    private String state;
     private Type type;
     private RoomSession room;
     private PromotionSession promotion;
@@ -22,25 +24,31 @@ public class Session {
         this.endTime = endTime;
         this.course = course;
         this.state = state;
-        this.type=type;
-        this.room=room;
-        this.promotion=promotion;
+        this.type = type;
+        this.room = room;
+        this.promotion = promotion;
     }
-    Session(){}
+
+    Session() {
+    }
 
     public int getId() {
         return id;
     }
 
-    public int getIdCourse(){
+    public int getIdCourse() {
         return course.getId();
     }
 
-    public int getIdRoom(){return room.getIdRoom();}
+    public int getIdRoom() {
+        return room.getIdRoom();
+    }
 
-    public int getIdPromotion(){return promotion.getIdPromotion();}
+    public int getIdPromotion() {
+        return promotion.getIdPromotion();
+    }
 
-    public int getIdType(){
+    public int getIdType() {
         return type.getId();
     }
 
@@ -96,9 +104,13 @@ public class Session {
         this.state = state;
     }
 
-    public Type getType(){ return type; }
+    public Type getType() {
+        return type;
+    }
 
-    public void setType(Type type){this.type=type;}
+    public void setType(Type type) {
+        this.type = type;
+    }
 
     public RoomSession getRoom() {
         return room;

@@ -19,16 +19,15 @@ public class AddRoom extends JPanel implements ActionListener {
     JTextField capacity = new JTextField();
     JTextField site = new JTextField();
 
-    JButton buttonAdd= new JButton("Ajout");
-    JButton buttonDelete= new JButton("Suppression");
-    JButton buttonModify= new JButton("Cours");
-    JButton students= new JButton("Etudiants");
-    JButton promotions= new JButton("Promotion");
-    JButton teachers= new JButton("Professeurs");
-    JButton rooms= new JButton("Salles");
+    JButton buttonAdd = new JButton("Ajout");
+    JButton buttonDelete = new JButton("Suppression");
+    JButton buttonModify = new JButton("Cours");
+    JButton students = new JButton("Etudiants");
+    JButton promotions = new JButton("Promotion");
+    JButton teachers = new JButton("Professeurs");
+    JButton rooms = new JButton("Salles");
     JButton graphique = new JButton("CapaciteSalle");
     JButton graphique2 = new JButton("StatistiquesCours ");
-
 
 
     public AddRoom() {
@@ -41,15 +40,14 @@ public class AddRoom extends JPanel implements ActionListener {
         Font police = new Font("Arial", Font.BOLD, 10);
 
         JLabel labelFond = new JLabel(new ImageIcon("PHOTOS/homepage.png"));
-        labelFond.setBounds(0,0,1250,900);
-        labelFond.setSize(1460,677);
+        labelFond.setBounds(0, 0, 1250, 900);
+        labelFond.setSize(1460, 677);
 
         JLabel question = new JLabel("Renseignez les informations suivantes");
         JLabel idtitle = new JLabel("ID :");
         JLabel nametitle = new JLabel("NOM DE LA SALLE:");
         JLabel capacitytitle = new JLabel("CAPACITE :");
         JLabel sitetitle = new JLabel("NOM DU SITE");
-
 
 
         question.setFont(police);
@@ -82,15 +80,15 @@ public class AddRoom extends JPanel implements ActionListener {
         capacity.addActionListener(this);
         site.addActionListener(this);
 
-        students.setBounds(0,10,120,30);
-        teachers.setBounds(120,10,120,30);
-        promotions.setBounds(240,10,120,30);
-        rooms.setBounds(360,10,120,30);
-        buttonAdd.setBounds(480,10,120,30);
-        buttonDelete.setBounds(600,10,120,30);
-        buttonModify.setBounds(720,10,120,30);
-        graphique.setBounds(840,10,120,30);
-        graphique2.setBounds(960,10,120,30);
+        students.setBounds(0, 10, 120, 30);
+        teachers.setBounds(120, 10, 120, 30);
+        promotions.setBounds(240, 10, 120, 30);
+        rooms.setBounds(360, 10, 120, 30);
+        buttonAdd.setBounds(480, 10, 120, 30);
+        buttonDelete.setBounds(600, 10, 120, 30);
+        buttonModify.setBounds(720, 10, 120, 30);
+        graphique.setBounds(840, 10, 120, 30);
+        graphique2.setBounds(960, 10, 120, 30);
 
 
         buttonDelete.setFont(police);
@@ -118,7 +116,6 @@ public class AddRoom extends JPanel implements ActionListener {
         this.setBackground(Color.white);
 
 
-
         this.add(question);
         this.add(idtitle);
         this.add(nametitle);
@@ -136,13 +133,14 @@ public class AddRoom extends JPanel implements ActionListener {
 
 
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
             //Connect to Database
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/projet?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
-                    "root","");
+                    "root", "");
             Statement query = ((Connection) connect).createStatement();
 
             Room room = new Room();
@@ -152,22 +150,17 @@ public class AddRoom extends JPanel implements ActionListener {
             room.setName(name5.getText());
             room.setCapacity(Integer.parseInt(capacity.getText()));
             for (Site element : connectDAO.sites) {
-                if (site.getText().equals(element.getName()))
-                {
+                if (site.getText().equals(element.getName())) {
                     room.setSite(element);
                 }
             }
 
             roomDAO.update(room);
 
-        }
-
-        catch (ClassNotFoundException ex){
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE,null,ex);
-        }
-
-        catch(SQLException ex){
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE,null,ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
         }
 

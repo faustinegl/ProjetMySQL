@@ -23,32 +23,29 @@ public class AddSession extends JPanel implements ActionListener {
     JTextField state = new JTextField();
     JTextField type = new JTextField();
 
-    JButton buttonAdd= new JButton("Ajout");
-    JButton buttonDelete= new JButton("Suppression");
-    JButton buttonModify= new JButton("Cours");
-    JButton students= new JButton("Etudiants");
-    JButton promotions= new JButton("Promotion");
-    JButton teachers= new JButton("Professeurs");
-    JButton rooms= new JButton("Salles");
+    JButton buttonAdd = new JButton("Ajout");
+    JButton buttonDelete = new JButton("Suppression");
+    JButton buttonModify = new JButton("Cours");
+    JButton students = new JButton("Etudiants");
+    JButton promotions = new JButton("Promotion");
+    JButton teachers = new JButton("Professeurs");
+    JButton rooms = new JButton("Salles");
     JButton graphique = new JButton("CapaciteSalle");
     JButton graphique2 = new JButton("StatistiquesCours ");
 
 
-    public AddSession()
-    {
+    public AddSession() {
 
-        this.setSize(1250,900);
+        this.setSize(1250, 900);
         this.setLayout(null);
         connectDAO.createConnection();
-
-
 
 
         Font police = new Font("Arial", Font.BOLD, 10);
 
         JLabel labelFond = new JLabel(new ImageIcon("PHOTOS/homepage.png"));
-        labelFond.setBounds(0,0,1250,900);
-        labelFond.setSize(1460,677);
+        labelFond.setBounds(0, 0, 1250, 900);
+        labelFond.setSize(1460, 677);
 
         JLabel question = new JLabel("Renseignez les informations suivantes");
         JLabel idtitle = new JLabel("ID :");
@@ -59,7 +56,6 @@ public class AddSession extends JPanel implements ActionListener {
         JLabel coursetitle = new JLabel("NOM DU COURS :");
         JLabel statetitle = new JLabel("ETAT :");
         JLabel typetitle = new JLabel("TYPE DU COURS :");
-
 
 
         question.setFont(police);
@@ -109,15 +105,15 @@ public class AddSession extends JPanel implements ActionListener {
         state.addActionListener(this);
         type.addActionListener(this);
 
-        students.setBounds(0,10,120,30);
-        teachers.setBounds(120,10,120,30);
-        promotions.setBounds(240,10,120,30);
-        rooms.setBounds(360,10,120,30);
-        buttonAdd.setBounds(480,10,120,30);
-        buttonDelete.setBounds(600,10,120,30);
-        buttonModify.setBounds(720,10,120,30);
-        graphique.setBounds(840,10,120,30);
-        graphique2.setBounds(960,10,120,30);
+        students.setBounds(0, 10, 120, 30);
+        teachers.setBounds(120, 10, 120, 30);
+        promotions.setBounds(240, 10, 120, 30);
+        rooms.setBounds(360, 10, 120, 30);
+        buttonAdd.setBounds(480, 10, 120, 30);
+        buttonDelete.setBounds(600, 10, 120, 30);
+        buttonModify.setBounds(720, 10, 120, 30);
+        graphique.setBounds(840, 10, 120, 30);
+        graphique2.setBounds(960, 10, 120, 30);
 
         buttonDelete.setFont(police);
         buttonModify.setFont(police);
@@ -138,7 +134,6 @@ public class AddSession extends JPanel implements ActionListener {
         this.add(rooms);
         this.add(buttonAdd);
         this.setBackground(Color.white);
-
 
 
         this.add(question);
@@ -174,7 +169,7 @@ public class AddSession extends JPanel implements ActionListener {
             //Connect to Database
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/projet?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
-                    "root","");
+                    "root", "");
             Statement query = ((Connection) connect).createStatement();
 
             Session session = new Session();
@@ -189,14 +184,12 @@ public class AddSession extends JPanel implements ActionListener {
             session.setState(state.getText());
 
             for (Course course1 : connectDAO.courses) {
-                if (course.getText().equals(course1.getName()))
-                {
+                if (course.getText().equals(course1.getName())) {
                     session.setCourse(course1);
                 }
             }
             for (Type type1 : connectDAO.types) {
-                if (type.getText().equals(type1.getName()))
-                {
+                if (type.getText().equals(type1.getName())) {
                     session.setType(type1);
                 }
             }
@@ -204,19 +197,12 @@ public class AddSession extends JPanel implements ActionListener {
 
             sessionDAO.update(session);
 
-        }
-
-        catch (ClassNotFoundException ex){
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE,null,ex);
-        }
-
-        catch(SQLException ex){
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE,null,ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
         }
-
-
-
 
 
     }

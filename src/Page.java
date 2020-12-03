@@ -15,7 +15,7 @@ public class Page extends JFrame implements ActionListener {
 
 
     ResearchTeacher researchTeacher = new ResearchTeacher();
-    TimeTableTeacherList timeTableTeacherList = new TimeTableTeacherList();
+   // TimeTableTeacherList timeTableTeacherList = new TimeTableTeacherList();
 
     AddStudent addStudent = new AddStudent();
     AddTeacher addTeacher = new AddTeacher();
@@ -36,13 +36,15 @@ public class Page extends JFrame implements ActionListener {
 
 
     ResearchStudent researchStudent = new ResearchStudent();
-    TimeTableStudentList timeTableStudentList = new TimeTableStudentList();
+   // TimeTableStudentList timeTableStudentList = new TimeTableStudentList();
 
     ResearchRoom researchRoom = new ResearchRoom();
-    TimeTableRoomList timeTableRoomList = new TimeTableRoomList();
+    //TimeTableRoomList timeTableRoomList = new TimeTableRoomList();
 
     ResearchPromotion researchPromotion = new ResearchPromotion();
-    TimeTablePromotionList timeTablePromotionList = new TimeTablePromotionList();
+    //TimeTablePromotionList timeTablePromotionList = new TimeTablePromotionList();
+
+
 
 
     ConnectDAO connectDAO = new ConnectDAO();
@@ -235,6 +237,17 @@ public class Page extends JFrame implements ActionListener {
         researchTeacher.graphique2.addActionListener(this);
         researchTeacher.graphique.addActionListener(this);
 
+        modify.buttonAdd.addActionListener(this);
+        modify.teachers.addActionListener(this);
+        modify.students.addActionListener(this);
+        modify.rooms.addActionListener(this);
+        modify.promotions.addActionListener(this);
+        modify.buttonDelete.addActionListener(this);
+        modify.buttonModify.addActionListener(this);
+        modify.graphique2.addActionListener(this);
+        modify.graphique.addActionListener(this);
+
+
         researchTeacher.researchValidate.addActionListener(this);
         researchStudent.researchValidate1.addActionListener(this);
         researchRoom.researchValidate3.addActionListener(this);
@@ -286,6 +299,7 @@ public class Page extends JFrame implements ActionListener {
                         this.revalidate();
                     }
                     case ("ADMIN"), ("PEDA") -> {
+                        menuAdmin.add(menuAdmin.listUser.getTimePane());
                         this.setContentPane(menuAdmin);
                         this.revalidate();
                     }
@@ -315,43 +329,43 @@ public class Page extends JFrame implements ActionListener {
             this.setContentPane(researchTeacher);
             this.revalidate();
         }
-        if (e.getSource() == researchTeacher.researchValidate) {
+       /* if (e.getSource() == researchTeacher.researchValidate) {
             researchTeacher.add(timeTableTeacherList.getTimePane());
             this.setContentPane(researchTeacher);
             this.revalidate();
-        }
+        }*/
 
         if (e.getSource() == menuAdmin.students) {
             this.setContentPane(researchStudent);
             this.revalidate();
         }
-        if (e.getSource() == researchStudent.researchValidate1) {
+       /* if (e.getSource() == researchStudent.researchValidate1) {
             researchStudent.add(timeTableStudentList.getTimePane());
             this.setContentPane(researchStudent);
             this.revalidate();
         }
-
+*/
 
         if (e.getSource() == menuAdmin.rooms) {
             this.setContentPane(researchRoom);
             this.revalidate();
         }
-        if (e.getSource() == researchRoom.researchValidate3) {
+        /*if (e.getSource() == researchRoom.researchValidate3) {
             researchRoom.add(timeTableRoomList.getTimePane());
             this.setContentPane(researchRoom);
             this.revalidate();
-        }
+        }*/
 
 
         if (e.getSource() == menuAdmin.promotions) {
             this.setContentPane(researchPromotion);
             this.revalidate();
         }
-        if (e.getSource() == researchPromotion.researchValidate2) {
+       /* if (e.getSource() == researchPromotion.researchValidate2) {
             researchPromotion.add(timeTablePromotionList.getTimePane());
             this.setContentPane(researchPromotion);
             this.revalidate();
-        }
+        }*/
 
 
         if (e.getSource() == menuAdmin.buttonAdd) {
@@ -416,6 +430,29 @@ public class Page extends JFrame implements ActionListener {
             this.setContentPane(deleteTeacher);
             this.revalidate();
         }
+
+
+        if (e.getSource() == menuAdmin.buttonModify) {
+            this.setContentPane(modify);
+            this.revalidate();
+
+
+        }
+        if (e.getSource() == modify.sstudent) {
+            this.setContentPane(modifyStudent);
+            this.revalidate();
+        }
+
+        if (e.getSource() == modify.ssession) {
+            this.setContentPane(modifySession);
+            this.revalidate();
+        }
+
+
+
+
+
+
         if (e.getSource()== menuAdmin.graphique)
         {
             final BarChart capacite_salles = new BarChart("Capacité salles");

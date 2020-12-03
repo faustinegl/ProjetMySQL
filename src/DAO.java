@@ -2,16 +2,16 @@ import java.sql.Connection;
 import java.util.List;
 
 
-
 public abstract class DAO<T> {
     protected Connection connect = null;
 
-    public DAO(Connection conn){
+    public DAO(Connection conn) {
         this.connect = conn;
     }
 
     /**
      * Méthode de création
+     *
      * @param obj
      * @return boolean
      */
@@ -19,6 +19,7 @@ public abstract class DAO<T> {
 
     /**
      * Méthode pour effacer
+     *
      * @param obj
      * @return boolean
      */
@@ -26,6 +27,7 @@ public abstract class DAO<T> {
 
     /**
      * Méthode de mise à jour
+     *
      * @param obj
      * @return boolean
      */
@@ -33,8 +35,9 @@ public abstract class DAO<T> {
 
     /**
      * Méthode de recherche des informations
+     *
      * @param id
      * @return T
      */
-    public abstract T find(int id, User user, List<Promotion>promotions,List<Course>courses, List <Site> sites,List<Type>types,List<RoomSession>roomSessions,List<PromotionSession>promotionSessions);
+    public abstract T find(int id, User user, List<Promotion> promotions, List<Course> courses, List<Site> sites, List<Type> types, List<RoomSession> roomSessions, List<PromotionSession> promotionSessions);
 }
